@@ -11,20 +11,23 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
+    
     public function run(): void
     {
          User::factory(10)->create();
+
          $this->call([
             CategorySeeder::class,
-            SettingSeeder::class,
         ]);
-         Post::factory(10)->create();
-         Comment::factory()->count(20)->create();
-         Image::factory()->count(30)->create();
-         
+
+        $posts =  Post::factory(20)->create();
+        $posts->each(function($post){
+            Image::factory(2)->create([
+                'post_id'=>$post->id
+            ]);
+        });
+       
+        Comment::factory()->count(20)->create();
         
     }
 }

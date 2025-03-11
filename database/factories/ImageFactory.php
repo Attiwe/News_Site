@@ -10,8 +10,7 @@ class ImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'post_id' => Post::inRandomOrder()->first()->id,
-            'path' => fake()->imageUrl(),
+            'path' => 'https://picsum.photos/640/480?random=' . rand(1, 100),
         ];
     }
 }
