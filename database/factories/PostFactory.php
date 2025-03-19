@@ -21,7 +21,7 @@ class PostFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'category_id' => Category::inRandomOrder()->first()->id,
-            'title' => fake()->sentence(nbWords: 3),
+            'title' => fake('ar_SA')->sentence(3),
             'desc' => fake()->paragraph(5),
             'number_view' =>  rand(0, 100),
             'comment_able' => fake()->boolean(),
