@@ -23,10 +23,10 @@ class CheakSettingProvider extends ServiceProvider
          Setting::firstOr(function(){
            return Setting::create([
                 'stie_name' => 'News Social',
-                'email' => 'info@newssocial.com',
+                'email' => 'ebrahim@gmail.com',
                 'favicon' => 'favicon.ico',
                 'logo' => 'logo.png',
-                'phone' => '+1234567890',
+                'phone' => '+01150629726',
                 'facebook' => 'https://facebook.com/newssocial',
                 'linkendin' => 'https://linkedin.com/company/newssocial',
                 'twitter' => 'https://twitter.com/newssocial',

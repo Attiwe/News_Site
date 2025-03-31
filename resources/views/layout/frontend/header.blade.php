@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tb-contact">
-            <p><i class="fas fa-envelope"></i>info@mail.com</p>
-            <p><i class="fas fa-phone-alt"></i>+012 345 6789</p>
+          <p><i class="fas fa-envelope"></i>{{App\Models\Setting::first()->email}}</p>
+          <p><i class="fas fa-phone-alt"></i> {{App\Models\Setting::first()->phone}}</p>
           </div>
         </div>
         <div class="col-md-6">
@@ -88,11 +88,11 @@
             <a href="contact.html" class="nav-item nav-link">Contact Us</a>
           </div>
           <div class="social ml-auto">
-            <a href=""><i class="fab fa-twitter"></i></a>
-            <a href=""><i class="fab fa-facebook-f"></i></a>
-            <a href=""><i class="fab fa-linkedin-in"></i></a>
-            <a href=""><i class="fab fa-instagram"></i></a>
-            <a href=""><i class="fab fa-youtube"></i></a>
+            <a href="{{App\Models\Setting::first()->twitter}}" target="_blank"><i class="fab fa-twitter"></i></a> 
+            <a href="{{App\Models\Setting::first()->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="{{App\Models\Setting::first()->linkendin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="{{App\Models\Setting::first()->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="{{App\Models\Setting::first()->youtube}}" target="_blank"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
       </nav>

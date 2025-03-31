@@ -6,15 +6,16 @@
           <div class="footer-widget">
             <h3 class="title">Get in Touch</h3>
             <div class="contact-info">
-              <p><i class="fa fa-map-marker"></i>123 News Street, NY, USA</p>
-              <p><i class="fa fa-envelope"></i>info@example.com</p>
-              <p><i class="fa fa-phone"></i>+123-456-7890</p>
+              <p><i class="fa fa-map-marker"></i>{{App\Models\Setting::first()->city}}</p>
+
+              <p><i class="fa fa-envelope"></i> {{App\Models\Setting::first()->email}}</p>
+              <p><i class="fa fa-phone"></i> {{App\Models\Setting::first()->phone}}</p>
               <div class="social">
-                <a href=""><i class="fab fa-twitter"></i></a>
-                <a href=""><i class="fab fa-facebook-f"></i></a>
-                <a href=""><i class="fab fa-linkedin-in"></i></a>
-                <a href=""><i class="fab fa-instagram"></i></a>
-                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href="{{App\Models\Setting::first()->twitter}}" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="{{App\Models\Setting::first()->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="{{App\Models\Setting::first()->linkendin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="{{App\Models\Setting::first()->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="{{App\Models\Setting::first()->youtube}}" target="_blank"><i class="fab fa-youtube"></i></a>
               </div>
             </div>
           </div>

@@ -11,5 +11,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('post');
 });
- 
- 
