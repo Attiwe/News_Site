@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
-
+use App\Models\RelatedNewsSite;
+use App\Models\Category;
 class CheakSettingProvider extends ServiceProvider
 {
     /**
@@ -20,7 +21,7 @@ class CheakSettingProvider extends ServiceProvider
      */
     public function boot(): void
     {
-         Setting::firstOr(function(){
+       $getSetting =  Setting::firstOr(function(){
            return Setting::create([
                 'stie_name' => 'News Social',
                 'email' => 'ebrahim@gmail.com',
@@ -37,5 +38,14 @@ class CheakSettingProvider extends ServiceProvider
                 'street' => '123 News Street'
             ]);
          });
+
+         $getRelatedNewsSite = RelatedNewsSite::select('name','url')->get();
+         $categories = Category::select('name','slug')->get();
+
+         view()->share([
+            'getSetting' => $getSetting,
+            'getRelatedNewsSite' => $getRelatedNewsSite,
+            'categories' => $categories,
+         ]);
     }
 }

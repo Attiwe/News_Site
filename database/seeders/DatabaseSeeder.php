@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 
          $this->call([
             CategorySeeder::class,
+            RelatedNewsSiteSeeder::class,
         ]);
 
         $posts =  Post::factory(20)->create();

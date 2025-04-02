@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tb-contact">
-          <p><i class="fas fa-envelope"></i>{{App\Models\Setting::first()->email}}</p>
-          <p><i class="fas fa-phone-alt"></i> {{App\Models\Setting::first()->phone}}</p>
+          <p><i class="fas fa-envelope"></i>{{$getSetting->email}}</p>
+          <p><i class="fas fa-phone-alt"></i> {{$getSetting->phone}}</p>
           </div>
         </div>
         <div class="col-md-6">
@@ -68,18 +68,19 @@
           id="navbarCollapse"
         >
           <div class="navbar-nav mr-auto">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
+            <a href="{{route('frontend.post')}}" class="nav-item nav-link active">Home</a>  
             <div class="nav-item dropdown">
               <a
                 href="#"
                 class="nav-link dropdown-toggle"
                 data-toggle="dropdown"
-                >Dropdown</a
+                >Categories</a
               >
               <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Sub Item 1</a>
-                <a href="#" class="dropdown-item">Sub Item 2</a>
-              </div>
+                @foreach ($categories as $category)
+                  <a href="{{ route('frontend.category', $category->slug) }}" class="dropdown-item" title="{{$category->name}}" >  {{$category->name}}</a>
+                @endforeach
+               </div>
             </div>
             <a href="single-page.html" class="nav-item nav-link"
               >Single Page</a

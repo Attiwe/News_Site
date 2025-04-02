@@ -6,30 +6,28 @@
           <div class="footer-widget">
             <h3 class="title">Get in Touch</h3>
             <div class="contact-info">
-              <p><i class="fa fa-map-marker"></i>{{App\Models\Setting::first()->city}}</p>
+              <p><i class="fa fa-map-marker" title="{{App\Models\Setting::first()->city}}"></i>{{App\Models\Setting::first()->city}}</p>
 
-              <p><i class="fa fa-envelope"></i> {{App\Models\Setting::first()->email}}</p>
-              <p><i class="fa fa-phone"></i> {{App\Models\Setting::first()->phone}}</p>
-              <div class="social">
-                <a href="{{App\Models\Setting::first()->twitter}}" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="{{App\Models\Setting::first()->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="{{App\Models\Setting::first()->linkendin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="{{App\Models\Setting::first()->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="{{App\Models\Setting::first()->youtube}}" target="_blank"><i class="fab fa-youtube"></i></a>
+              <p><i class="fa fa-envelope" title="{{App\Models\Setting::first()->email}}"></i> {{App\Models\Setting::first()->email}}</p>
+              <p><i class="fa fa-phone" title="{{$getSetting->phone}}"></i> {{$getSetting->phone}}</p>
+              <div class="social" title="{{$getSetting->twitter}}">
+                <a href="{{$getSetting->twitter}}" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="{{$getSetting->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="{{$getSetting->linkendin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="{{$getSetting->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="{{$getSetting->youtube}}" target="_blank"><i class="fab fa-youtube"></i></a>
               </div>
             </div>
           </div>
-        </div>
+        </div>  
 
         <div class="col-lg-3 col-md-6">
           <div class="footer-widget">
             <h3 class="title">Useful Links</h3>
             <ul>
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">Pellentesque</a></li>
-              <li><a href="#">Aenean vulputate</a></li>
-              <li><a href="#">Vestibulum sit amet</a></li>
-              <li><a href="#">Nam dignissim</a></li>
+               @foreach ($getRelatedNewsSite as $item)
+                <li><a href="{{$item->url}}" title="{{$item->name}}" target="_blank">{{$item->name}}</a></li>
+              @endforeach
             </ul>
           </div>
         </div>
@@ -55,12 +53,18 @@
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Vivamus sed porta dui. Class aptent taciti sociosqu
               </p>
-              <form>
+              <form action="{{route('frontend.new-subscriber')}}" method="post">
+                @csrf
                 <input
                   class="form-control"
                   type="email"
+                  name="email"
+                  required
                   placeholder="Your email here"
                 />
+                @error('email')
+                    <span class="text-danger">{{$message}}</span>
+                @enderror
                 <button class="btn">Submit</button>
               </form>
             </div>
@@ -104,4 +108,9 @@
       </div>
     </div>
   </div>
-  <!-- Footer Bottom End -->
+ <!-- Back to Top -->
+ <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    
+  
+  
+   
