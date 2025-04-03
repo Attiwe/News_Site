@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\CategoryController;
 use App\Http\Controllers\frontend\ShowPostsController;
+use App\Http\Controllers\frontend\ContactUsController;
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -18,5 +19,7 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::get('/show-posts/{slug}', [ShowPostsController::class,'index'])->name('show-posts');
     Route::get('/show-more-comments/{slug}', [ShowPostsController::class,'showMoreComments'])->name('show-more-comments');
     Route::post('/add-comment', [ShowPostsController::class,'addComment'])->name('add-comment');
+    Route::get('/contact-us', [ContactUsController::class,'index'])->name('contact-us');
+    Route::post('/contact-us', [ContactUsController::class,'store'])->name('sing-in');
 
  });    
