@@ -40,8 +40,11 @@
         </div>
         <div class="col-lg-3 col-md-4">
           <div class="b-search">
-            <input type="text" placeholder="Search" />
-            <button><i class="fa fa-search"></i></button>
+            <form action="{{route('frontend.search')}}" method="POST">
+              @csrf
+            <input  type="text" name="search" placeholder="Search" />
+            <button title="Search" type="submit"><i class="fa fa-search"></i></button>
+            </form>
           </div>
         </div>
       </div>

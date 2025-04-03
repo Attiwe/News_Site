@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\CategoryController;
 use App\Http\Controllers\frontend\ShowPostsController;
 use App\Http\Controllers\frontend\ContactUsController;
+use App\Http\Controllers\frontend\SearchController;
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -25,5 +26,7 @@ Route::group( [ 'as' => 'frontend.'], function(){
         Route::get('/contact-us', 'index')->name('contact-us');
         Route::post('/contact-us', 'store')->name('sing-in');
     });
+
+    Route::match(['get','post'],'/search',SearchController::class)->name('search');
 
  });    
