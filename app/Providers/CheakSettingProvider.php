@@ -4,8 +4,7 @@ namespace App\Providers;
 
 use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
-use App\Models\RelatedNewsSite;
-use App\Models\Category;
+ 
 class CheakSettingProvider extends ServiceProvider
 {
     /**
@@ -39,13 +38,10 @@ class CheakSettingProvider extends ServiceProvider
             ]);
          });
 
-         $getRelatedNewsSite = RelatedNewsSite::select('name','url')->get();
-         $categories = Category::select('name','slug')->get();
-
+      
          view()->share([
             'getSetting' => $getSetting,
-            'getRelatedNewsSite' => $getRelatedNewsSite,
-            'categories' => $categories,
+            
          ]);
     }
 }

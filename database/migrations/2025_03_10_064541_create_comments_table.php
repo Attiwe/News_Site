@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->text('commit');
             $table->string('ip_address');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

@@ -5,7 +5,10 @@ namespace App\Models;
  use Illuminate\Database\Eloquent\Model;
  use Cviebrock\EloquentSluggable\Sluggable;
  use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Image;
+use App\Models\Comment; 
 class Post extends Model
 {
     use Sluggable , HasFactory;
@@ -20,6 +23,7 @@ class Post extends Model
 
     protected $fillable = [
         'user_id',
+        'number_view',
         'category_id',
         'title',
         'slug',

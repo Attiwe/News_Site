@@ -14,6 +14,7 @@ class HomeController extends Controller
         $mostRead    = Post::orderBy('number_view', 'desc')->take(3)->get();
         $oldesNews   = Post::oldest()->take(3)->get();
         $popularNews = Post::withCount('comments')->orderBy('comments_count', 'desc')->take(3)->get();
+        
         $categories  = Category::get();
         $categoryWithPost = $categories->map(function ($category) {
             $category->posts = $category->posts()->limit(2)->get();
