@@ -16,10 +16,14 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::get('/',[HomeController::class,'index'])->name('post');
     Route::post('/new-subscriber', [NewSubscriberController::class, 'store'])->name('new-subscriber');
     Route::get('/category/{slug}', CategoryController::class)->name('category');
-    Route::get('/show-posts/{slug}', [ShowPostsController::class,'index'])->name('show-posts');
-    Route::get('/show-more-comments/{slug}', [ShowPostsController::class,'showMoreComments'])->name('show-more-comments');
-    Route::post('/add-comment', [ShowPostsController::class,'addComment'])->name('add-comment');
-    Route::get('/contact-us', [ContactUsController::class,'index'])->name('contact-us');
-    Route::post('/contact-us', [ContactUsController::class,'store'])->name('sing-in');
+    Route::controller(ShowPostsController::class)->group(function(){
+        Route::get('/show-posts/{slug}', 'index')->name('show-posts');
+        Route::get('/show-more-comments/{slug}', 'showMoreComments')->name('show-more-comments');
+        Route::post('/add-comment', 'addComment')->name('add-comment');
+    });
+    Route::controller(ContactUsController::class)->group(function(){
+        Route::get('/contact-us', 'index')->name('contact-us');
+        Route::post('/contact-us', 'store')->name('sing-in');
+    });
 
  });    
