@@ -1,7 +1,12 @@
 @extends('layout.frontend.app')
+ 
+   
+@section('title')
+{{ $mainPosts->title      }}
+@endsection
 @section('breadcrumb')
 @parent
- <li class="breadcrumb-item"><a> {{ $mainPosts->title      }}</a></li>
+ <li class="breadcrumb-item"><a> {{ $mainPosts->title}}</a></li>
  @endsection
 
 @section('body')

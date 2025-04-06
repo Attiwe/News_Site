@@ -11,7 +11,7 @@ use App\Models\Comment;
 class ShowPostsController extends Controller
 {
     public function index($slug){
-        $mainPosts = Post::with(['comments'=>function($query){
+        $mainPosts = Post::active()->with(['comments'=>function($query){
             $query->limit(3);
         }])->where('slug', $slug)->firstorfail();
         $category = $mainPosts->category;
@@ -22,7 +22,7 @@ class ShowPostsController extends Controller
         return view('frontend.show_posts', compact('mainPosts', 'category_posts'));
     }
     public function showMoreComments($slug){
-        $posts = Post::where('slug', $slug)->first();
+        $posts = Post::active()->  where('slug', $slug)->first();
         $comments = $posts->comments()->latest()->with('user')->get();
         return response()->json($comments);
     }

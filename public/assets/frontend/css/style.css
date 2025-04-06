@@ -2,21 +2,21 @@
 /********** General CSS ***********/
 /**********************************/
 body {
-  color: #000000;
+  color: #2c3e50;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   background: #ffffff;
 }
 
 a {
-  color: #ff6f61;
-  transition: 0.5s;
+  color: #2980b9;
+  transition: 0.3s;
 }
 
 a:hover,
 a:active,
 a:focus {
-  color: #000000;
+  color: #27ae60;
   outline: none;
   text-decoration: none;
 }
@@ -24,7 +24,7 @@ a:focus {
 p {
   padding: 0;
   margin: 0 0 15px 0;
-  color: #000000;
+  color: #2c3e50;
 }
 
 h1,
@@ -35,7 +35,7 @@ h5,
 h6 {
   margin: 0 0 15px 0;
   padding: 0;
-  color: #000000;
+  color: #2c3e50;
   font-weight: 600;
 }
 
@@ -48,7 +48,7 @@ h6 {
 .back-to-top {
   position: fixed;
   display: none;
-  background: #ff6f61;
+  background: #2980b9;
   color: #ffffff;
   width: 35px;
   height: 35px;
@@ -63,7 +63,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #000000;
+  background: #27ae60;
 }
 
 .back-to-top i {
@@ -87,7 +87,7 @@ h6 {
 .form-control:focus,
 .custom-select:focus {
   box-shadow: none;
-  border-color: #ff6f61;
+  border-color: #2980b9;
 }
 
 .custom-radio,
@@ -103,19 +103,19 @@ h6 {
 .custom-radio .custom-control-input:checked ~ .custom-control-label::before,
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
   color: #ffffff;
-  background: #ff6f61;
+  background: #2980b9;
 }
 
 button.btn {
   color: #ffffff;
-  background: #000000;
-  border: 1px solid #000000;
+  background: #2c3e50;
+  border: 1px solid #2c3e50;
 }
 
 button.btn:hover {
   color: #ffffff;
-  background: #ff6f61;
-  border-color: #ff6f61;
+  background: #27ae60;
+  border-color: #27ae60;
 }
 
 /**********************************/
@@ -123,13 +123,13 @@ button.btn:hover {
 /**********************************/
 .top-bar {
   padding: 2px 0;
-  background: #000000;
+  background: #2c3e50;
 }
 
 .top-bar .tb-contact p {
   display: inline-block;
   margin: 0;
-  color: #ff6f61;
+  color: #2980b9;
   font-size: 14px;
 }
 
@@ -147,7 +147,7 @@ button.btn:hover {
 }
 
 .top-bar .tb-menu a {
-  color: #ff6f61;
+  color: #2980b9;
   font-size: 14px;
   margin: 0 8px;
 }
@@ -164,7 +164,7 @@ button.btn:hover {
   position: absolute;
   content: "/";
   margin: 1px 0 0 6px;
-  color: #ff6f61;
+  color: #2980b9;
   font-size: 14px;
 }
 
@@ -220,7 +220,7 @@ button.btn:hover {
 }
 
 .brand .b-search input[type="text"]:focus {
-  border-color: #ff6f61;
+  border-color: #2980b9;
 }
 
 .brand .b-search button {
@@ -231,12 +231,12 @@ button.btn:hover {
   right: 15px;
   border: none;
   background: none;
-  color: #ff6f61;
+  color: #2980b9;
   border-radius: 0 4px 4px 0;
 }
 
 .brand .b-search button:hover {
-  background: #ff6f61;
+  background: #2980b9;
   color: #ffffff;
 }
 
@@ -264,46 +264,75 @@ button.btn:hover {
 /**********************************/
 .nav-bar {
   position: relative;
-}
-
-.nav-bar.nav-sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 999;
+  padding: 0;
+  transition: 0.3s;
+  background: linear-gradient(45deg, #2c3e50, #2980b9) !important;
 }
 
 .nav-bar .navbar {
   height: 100%;
   padding: 0;
+  background: transparent !important;
 }
 
-.navbar-dark .navbar-nav .nav-link,
-.navbar-dark .navbar-nav .nav-link:focus,
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link.active {
-  padding: 10px 10px 8px 10px;
+.nav-bar .navbar-nav .nav-link {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: 500;
   color: #ffffff;
+  transition: 0.3s;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link.active {
-  border-bottom: 2px solid #000000;
-  transition: none;
+.nav-bar .navbar-nav .nav-link:hover,
+.nav-bar .navbar-nav .nav-link.active {
+  color: #f39c12;
 }
 
 .nav-bar .dropdown-menu {
   margin-top: 0;
   border: 0;
   border-radius: 0;
-  background: #f8f9fa;
+  background: #2c3e50;
+}
+
+.nav-bar .dropdown-menu .dropdown-item {
+  padding: 10px 20px;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.nav-bar .dropdown-menu .dropdown-item:hover,
+.nav-bar .dropdown-menu .dropdown-item.active {
+  color: #f39c12;
+  background: #2980b9;
+}
+
+.nav-bar .social .btn {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 5px;
+  transition: 0.3s;
+}
+
+.nav-bar .social .btn:hover {
+  background: #f39c12;
+}
+
+.nav-bar .social .btn i {
+  color: #ffffff;
+}
+
+.nav-bar .social .btn:hover i {
+  color: #2c3e50;
 }
 
 @media (min-width: 768px) {
   .nav-bar,
   .nav-bar .navbar {
-    background: #ff6f61 !important;
+    background: #2980b9 !important;
   }
 
   .nav-bar .navbar-brand {
@@ -321,7 +350,7 @@ button.btn:hover {
   .nav-bar,
   .nav-bar .navbar {
     padding: 3px 0;
-    background: #ff6f61 !important;
+    background: #2980b9 !important;
   }
 
   .nav-bar a.nav-link {
@@ -350,7 +379,7 @@ button.btn:hover {
   padding: 3px 0;
   text-align: center;
   font-size: 14px;
-  background: #ff6f61;
+  background: #2980b9;
   border: 1px solid #ffffff;
   border-radius: 4px;
 }
@@ -365,7 +394,7 @@ button.btn:hover {
 }
 
 .nav-bar .social a:hover i {
-  color: #ff6f61;
+  color: #2980b9;
 }
 
 /**********************************/
@@ -422,7 +451,7 @@ button.btn:hover {
 }
 
 .top-news .tn-title a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .top-news .tn-left {
@@ -466,7 +495,7 @@ button.btn:hover {
 .top-news .slick-next:hover,
 .top-news .slick-next:focus {
   color: #ffffff;
-  background: #ff6f61;
+  background: #2980b9;
 }
 
 .slick-slide .slick-prev::before,
@@ -503,10 +532,10 @@ button.btn:hover {
 }
 
 .cat-news h2 {
-  color: #000000;
+  color: #2c3e50;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 3px double #000000;
+  border-bottom: 3px double #2c3e50;
 }
 
 .cat-news .cn-img {
@@ -549,7 +578,7 @@ button.btn:hover {
 }
 
 .cat-news .cn-title a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .cat-news .slick-prev,
@@ -577,7 +606,7 @@ button.btn:hover {
 .cat-news .slick-next:hover,
 .cat-news .slick-next:focus {
   color: #ffffff;
-  background: #ff6f61;
+  background: #2980b9;
 }
 
 .cat-news .slick-prev::before,
@@ -609,14 +638,14 @@ button.btn:hover {
 
 .tab-news .nav.nav-pills .nav-link {
   color: #ffffff;
-  background: #000000;
+  background: #2c3e50;
   border-radius: 0;
 }
 
 .tab-news .nav.nav-pills .nav-link:hover,
 .tab-news .nav.nav-pills .nav-link.active {
   color: #ffffff;
-  background: #ff6f61;
+  background: #2980b9;
 }
 
 .tab-news .tab-content {
@@ -644,14 +673,14 @@ button.btn:hover {
 }
 
 .tab-news .tn-title a {
-  color: #000000;
+  color: #2c3e50;
   font-size: 18px;
   font-weight: 400;
   transition: all 0.3s;
 }
 
 .tab-news .tn-title a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 /**********************************/
@@ -707,7 +736,7 @@ button.btn:hover {
 }
 
 .main-news .mn-title a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .main-news .mn-list {
@@ -715,10 +744,10 @@ button.btn:hover {
 }
 
 .main-news .mn-list h2 {
-  color: #000000;
+  color: #2c3e50;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 3px double #000000;
+  border-bottom: 3px double #2c3e50;
 }
 
 .main-news .mn-list ul {
@@ -736,7 +765,7 @@ button.btn:hover {
 }
 
 .main-news .mn-list ul li a {
-  color: #000000;
+  color: #2c3e50;
   display: block;
   line-height: 23px;
 }
@@ -746,12 +775,12 @@ button.btn:hover {
   content: "\f061";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  color: #000000;
+  color: #2c3e50;
   left: 1px;
 }
 
 .main-news .mn-list ul li a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 /**********************************/
@@ -805,7 +834,7 @@ button.btn:hover {
 .single-news .sn-content h1.sn-title {
   display: block;
   width: 100%;
-  color: #000000;
+  color: #2c3e50;
 }
 
 .single-news .sn-related {
@@ -813,10 +842,10 @@ button.btn:hover {
 }
 
 .single-news .sn-related h2 {
-  color: #000000;
+  color: #2c3e50;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 3px double #000000;
+  border-bottom: 3px double #2c3e50;
 }
 
 .single-news .sn-slider .sn-img {
@@ -859,7 +888,7 @@ button.btn:hover {
 }
 
 .single-news .sn-slider .sn-title a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .single-news .sn-slider .slick-prev,
@@ -887,7 +916,7 @@ button.btn:hover {
 .single-news .sn-slider .slick-next:hover,
 .single-news .sn-slider .slick-next:focus {
   color: #ffffff;
-  background: #ff6f61;
+  background: #2980b9;
 }
 
 .single-news .sn-slider .slick-prev::before,
@@ -921,10 +950,10 @@ button.btn:hover {
 }
 
 .sidebar .sidebar-widget h2.sw-title {
-  color: #000000;
+  color: #2c3e50;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 3px double #000000;
+  border-bottom: 3px double #2c3e50;
 }
 
 .sidebar .sidebar-widget .news-list {
@@ -951,14 +980,14 @@ button.btn:hover {
 }
 
 .sidebar .news-list .nl-item .nl-title a {
-  color: #000000;
+  color: #2c3e50;
   font-size: 16px;
   font-weight: 400;
   transition: all 0.3s;
 }
 
 .sidebar .news-list .nl-item .nl-title a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .sidebar .sidebar-widget .tab-news {
@@ -968,14 +997,14 @@ button.btn:hover {
 
 .sidebar .tab-news .nav.nav-pills .nav-link {
   color: #ffffff;
-  background: #000000;
+  background: #2c3e50;
   border-radius: 0;
 }
 
 .sidebar .tab-news .nav.nav-pills .nav-link:hover,
 .sidebar .tab-news .nav.nav-pills .nav-link.active {
   color: #ffffff;
-  background: #ff6f61;
+  background: #2980b9;
 }
 
 .sidebar .tab-news .tab-content {
@@ -1006,14 +1035,14 @@ button.btn:hover {
 }
 
 .sidebar .tab-news .tn-title a {
-  color: #000000;
+  color: #2c3e50;
   font-size: 16px;
   font-weight: 400;
   transition: all 0.3s;
 }
 
 .sidebar .tab-news .tn-title a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .sidebar .sidebar-widget .category {
@@ -1036,12 +1065,12 @@ button.btn:hover {
 
 .sidebar .category ul li a {
   display: inline-block;
-  color: #000000;
+  color: #2c3e50;
   line-height: 23px;
 }
 
 .sidebar .category ul li a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .sidebar .category ul li::before {
@@ -1049,7 +1078,7 @@ button.btn:hover {
   content: "\f061";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  color: #000000;
+  color: #2c3e50;
   left: 1px;
 }
 
@@ -1066,16 +1095,16 @@ button.btn:hover {
   display: inline-block;
   margin-bottom: 5px;
   padding: 5px 10px;
-  color: #000000;
+  color: #2c3e50;
   background: #ffffff;
-  border: 1px solid #000000;
+  border: 1px solid #2c3e50;
   border-radius: 4px;
 }
 
 .sidebar .sidebar-widget .tags a:hover {
   color: #ffffff;
-  background: #ff6f61;
-  border: 1px solid #ff6f61;
+  background: #2980b9;
+  border: 1px solid #2980b9;
 }
 
 .sidebar .sidebar-widget .image a {
@@ -1115,7 +1144,7 @@ button.btn:hover {
 }
 
 .contact .contact-info h4 i {
-  color: #000000;
+  color: #2c3e50;
   margin-right: 5px;
 }
 
@@ -1132,17 +1161,17 @@ button.btn:hover {
   padding: 7px 0;
   text-align: center;
   font-size: 18px;
-  border: 1px solid #000000;
+  border: 1px solid #2c3e50;
   border-radius: 4px;
 }
 
 .contact .social a i {
-  color: #000000;
+  color: #2c3e50;
 }
 
 .contact .social a:hover {
-  background: #ff6f61;
-  border-color: #ff6f61;
+  background: #2980b9;
+  border-color: #2980b9;
 }
 
 .contact .social a:hover i {
@@ -1207,7 +1236,7 @@ button.btn:hover {
 
 .footer .footer-widget ul li a:hover {
   padding-left: 10px;
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .footer .contact-info p {
@@ -1243,7 +1272,7 @@ button.btn:hover {
 }
 
 .footer .social a:hover {
-  background: #ff6f61;
+  background: #2980b9;
 }
 
 .footer .social a:hover i {
@@ -1284,7 +1313,7 @@ button.btn:hover {
 }
 
 .footer .newsletter .btn:hover {
-  background: #ff6f61;
+  background: #2980b9;
 }
 
 .footer .newsletter input:focus,
@@ -1319,7 +1348,7 @@ button.btn:hover {
 }
 
 .footer-menu .f-menu a:hover {
-  color: #ff6f61;
+  color: #f39c12;
 }
 
 .footer-menu .f-menu a:last-child {
@@ -1357,13 +1386,13 @@ button.btn:hover {
 }
 
 .comment-input input:focus {
-  border-color: #ff6f61;
+  border-color: #2980b9;
   outline: none;
 }
 
 .comment-input button {
   padding: 12px 20px;
-  background-color: #ff6f61;
+  background-color: #2980b9;
   color: white;
   border: none;
   border-radius: 25px;
@@ -1373,7 +1402,7 @@ button.btn:hover {
 }
 
 .comment-input button:hover {
-  background-color: #e65a50;
+  background-color: #27ae60;
 }
 
 .comments {
@@ -1393,7 +1422,7 @@ button.btn:hover {
   height: 45px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ff6f61;
+  border: 2px solid #2980b9;
 }
 
 .comment-content {
@@ -1406,7 +1435,7 @@ button.btn:hover {
 
 .username {
   font-weight: bold;
-  color: #ff6f61;
+  color: #2980b9;
   display: block;
   margin-bottom: 4px;
 }
@@ -1419,7 +1448,7 @@ button.btn:hover {
 
 .show-more-btn {
   padding: 10px 20px;
-  background-color: #ff6f61;
+  background-color: #2980b9;
   color: white;
   border: none;
   border-radius: 25px;
@@ -1431,7 +1460,7 @@ button.btn:hover {
 }
 
 .show-more-btn:hover {
-  background-color: #e65a50;
+  background-color: #27ae60;
 }
 
 /**********************************/
@@ -1474,7 +1503,7 @@ button.btn:hover {
 
 .menu-item:hover,
 .menu-item.active {
-  background-color: #ff6f61;
+  background-color: #2980b9;
   color: white;
 }
 
@@ -1495,7 +1524,7 @@ button.btn:hover {
 }
 
 h2 {
-  color: #ff6f61;
+  color: #2980b9;
 }
 
 /* User Profile Styles */
@@ -1539,16 +1568,17 @@ h2 {
 }
 
 .post-btn {
-  background-color: #ff6f61;
+  background-color: #2980b9;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .post-btn:hover {
-  background-color: #e55b51;
+  background-color: #27ae60;
 }
 
 .image-slider {
@@ -1673,7 +1703,7 @@ h2 {
   position: absolute;
   top: 5px;
   right: 5px;
-  background: #ff6f61;
+  background: #2980b9;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -1760,7 +1790,7 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
-  color: #ff6f61;
+  color: #2980b9;
   transition: color 0.3s ease;
   font-size: 1.2rem;
 }
@@ -1802,7 +1832,7 @@ h2 {
   margin-bottom: 10px;
   background-color: #ffeceb;
   border-radius: 4px;
-  border: 1px solid #ff6f61;
+  border: 1px solid #2980b9;
   transition: box-shadow 0.3s ease;
 }
 
@@ -1825,7 +1855,7 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
-  color: #ff6f61;
+  color: #2980b9;
   transition: color 0.3s ease;
   font-size: 1.2rem;
 }
@@ -1868,7 +1898,7 @@ h2 {
   margin-bottom: 10px;
   background-color: #ffeceb;
   border-radius: 4px;
-  border: 1px solid #ff6f61;
+  border: 1px solid #2980b9;
   transition: box-shadow 0.3s ease;
 }
 
@@ -1891,7 +1921,7 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
-  color: #ff6f61;
+  color: #2980b9;
   transition: color 0.3s ease;
   font-size: 1.2rem;
 }
@@ -1933,7 +1963,7 @@ h2 {
 
 .save-settings-btn {
   padding: 10px 20px;
-  background-color: #ff6f61;
+  background-color: #2980b9;
   color: white;
   border: none;
   border-radius: 5px;
@@ -1942,7 +1972,7 @@ h2 {
 }
 
 .save-settings-btn:hover {
-  background-color: #e65a50;
+  background-color: #27ae60;
 }
 .change-password-form {
   margin-top: 20px;
@@ -1982,7 +2012,7 @@ h2 {
 .change-password-form .change-password-btn {
   width: 100%;
   padding: 10px 20px;
-  background-color: #ff6f61;
+  background-color: #2980b9;
   color: white;
   border: none;
   border-radius: 5px;
@@ -1991,7 +2021,7 @@ h2 {
 }
 
 .change-password-form .change-password-btn:hover {
-  background-color: #e65a50;
+  background-color: #27ae60;
 }
 
 /* Responsive Design */
@@ -2044,12 +2074,134 @@ h2 {
 /**********************************/
 
 /**********************************/
+/******** Card Styles *************/
+/**********************************/
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-img img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.card-title a {
+  color: #2c3e50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+  color: #2980b9;
+}
+
+.card-text {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.card-footer {
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.card-meta i {
+  color: #2980b9;
+  margin-right: 5px;
+}
+
+.card-meta span {
+  margin-right: 15px;
+}
+
+.card-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #2980b9;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: background 0.3s ease;
+}
+
+.card-category:hover {
+  background: #27ae60;
+  color: #fff;
+}
+
+/* Card Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/**********************************/
+
+/**********************************/
 /******** Footer Bottom CSS *******/
 /**********************************/
 .footer-bottom {
   position: relative;
   padding: 25px 0;
-  background: #000000;
+  background: #2c3e50;
 }
 
 .footer-bottom .copyright {

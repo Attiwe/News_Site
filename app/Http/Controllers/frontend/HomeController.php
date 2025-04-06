@@ -10,10 +10,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts       = Post::with('images')->latest()->paginate(9);
-        $mostRead    = Post::orderBy('number_view', 'desc')->take(3)->get();
-        $oldesNews   = Post::oldest()->take(3)->get();
-        $popularNews = Post::withCount('comments')->orderBy('comments_count', 'desc')->take(3)->get();
+        $posts       = Post::active()->with('images')->latest()->paginate(9);
+        $mostRead    = Post::active()->orderBy('number_view', 'desc')->take(3)->get();
+        $oldesNews   = Post::active()->oldest()->take(3)->get();
+        $popularNews = Post::active()->withCount('comments')->orderBy('comments_count', 'desc')->take(3)->get();
         
         $categories  = Category::get();
         $categoryWithPost = $categories->map(function ($category) {

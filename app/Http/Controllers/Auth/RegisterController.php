@@ -7,8 +7,15 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
-class RegisterController extends Controller
+
+ class RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -51,8 +58,16 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:100', 'unique:users'],
+            'image' => ['nullable','image','mimes:jpeg,png,jpg,gif,svg','max:2048' ],
+            'country' => ['nullable','string'],
+            'city' => ['nullable','string'],
+            'street' => ['nullable','string'],
+            'phone' => ['nullable','numeric'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'password_confirmation' =>[ 'required'],
+            
+        ]); 
     }
 
     /**
@@ -63,10 +78,55 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'username' => $data['username'],
+            'country' => $data['country'],
+            'city' => $data['city'],
+            'street' => $data['street'],
+            'phone' => $data['phone'],
+            'status'=> 'active',
             'password' => Hash::make($data['password']),
         ]);
+        
+        if(isset($data['image']) && $data['image']){
+            $file = $data['image'];
+            $nameImage = Str::slug($data['username']) . time() . "." . $file->getClientOriginalExtension();
+            $path = $file->storeAs('uploads/users', $nameImage, ['disk' => 'uploads']);
+            
+            $user->update([
+                'image' => $path,
+            ]);
+        }   
+        
+        return $user;
     }
+
+    public function register(Request $request)
+    {
+        // return $request;
+         $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+
+        if ($response = $this->registered($request, $user)) {
+              return $response;
+        }
+         return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect($this->redirectPath());
+    }
+    
+
+    protected function registered(Request $request, $user)
+    {
+        session()-> flash('success', 'You have registered successfully.');
+        return redirect()->route('frontend.post');
+        
+    }
+
 }

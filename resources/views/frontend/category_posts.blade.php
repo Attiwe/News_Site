@@ -1,4 +1,9 @@
 @extends('layout.frontend.app')
+
+@section('title')
+{{$categorys->name}}
+@endsection
+
 @section('breadcrumb')
 @parent
  <li class="breadcrumb-item"><a  >{{$categorys->name}}</a></li>

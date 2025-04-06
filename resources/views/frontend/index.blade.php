@@ -1,4 +1,9 @@
 @extends('layout.frontend.app')
+
+@section('title')
+Home
+@endsection
+
 @section('body')
 @php $lasts_post = $posts->take(3); @endphp
  

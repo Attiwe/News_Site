@@ -21,6 +21,10 @@ class Post extends Model
         ];
     }
 
+    public function scopeActive($query){
+        return $query->where('status',1);
+    }
+
     protected $fillable = [
         'user_id',
         'number_view',
@@ -30,6 +34,8 @@ class Post extends Model
         'desc',
         'comment_able'
     ];
+
+    
 
     public function user(){
         return $this->belongsTo(User::class);

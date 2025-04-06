@@ -1,4 +1,9 @@
 @extends('layout.frontend.app')
+
+@section('title')
+Contact Us
+@endsection
+
 @section('body')
 <br>
 <br>

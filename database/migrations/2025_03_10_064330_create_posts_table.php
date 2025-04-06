@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('desc');
+            $table->boolean('status')->default(1);
             $table->bigInteger('number_view')->default(0);
             $table->boolean('comment_able');
             $table->timestamps();

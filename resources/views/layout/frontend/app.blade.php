@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>News site</title>
+    <title> {{config('app.name' )}} @yield('title') </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="Bootstrap News Template - Free HTML Templates" name="keywords" />
     <meta content="Bootstrap News Template - Free HTML Templates" name="description" />
@@ -43,7 +43,7 @@
     @include('layout.frontend.footer')
 
     <!-- Back to Top -->
- 
+    
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -52,7 +52,10 @@
 
     <!-- Template Javascript -->
     <script src=" {{asset('assets/frontend/js/main.js')}} "></script>
-    @stack('js')
+
+    <!--  for custom js used jquery and ajax -->
+     @stack('js') 
+
 </body>
 
 </html>
