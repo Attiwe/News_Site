@@ -6,8 +6,6 @@ Home
 
 @section('body')
 @php $lasts_post = $posts->take(3); @endphp
- 
-
     <!-- Top News Start-->
     <div class="top-news">
         <div class="container">
@@ -17,7 +15,7 @@ Home
                         @foreach ($mostRead as $post )  
                         <div class="col-md-6">
                             <div class="tn-img">
-                                <img src="{{$post->images->first()->path}}" />
+                                <img  style="height: 640px; width: 480px;" src="{{asset($post->images->first()->path)}}" />
                                 <div class="tn-title">
                                     <a href="{{ route('frontend.show-posts', $post->slug)}}" title="{{ $post->title}}"> {{ $post->title }}</a>
                                 </div>
@@ -33,9 +31,9 @@ Home
                         @foreach ($newPost as $post )
                         <div class="col-md-6">
                             <div class="tn-img">
-                                <img src="{{$post->images->first()->path}}" />
+                                <img style="height: 220px; width: 220px;" src="{{asset($post->images->first()->path)}}" />
                                 <div class="tn-title">
-                                    <a href="{{ route('frontend.show-posts', $post->slug)}}" title="{{ $post->title}}"> {{ $post->title }}</a>
+                                    <a href="{{ route('frontend.show-posts', $post->slug)}}" title="{{ $post->title}}">  {{ $post->title }}</a>
                                 </div>
                             </div>
                         </div>
@@ -48,8 +46,7 @@ Home
     <!-- Top News End-->
 
     <!-- Category News Start-->
- 
-    
+
     <div class="cat-news">
         <div class="container">
             <div class="row">
@@ -60,7 +57,7 @@ Home
                      @foreach ($category->posts as $post  )
                      <div class="col-md-6">
                         <div class="cn-img">
-                            <img src="{{$post->images->first()->path}}" />
+                            <img style="height: 220px; width: 220px;" src="{{asset($post->images->first()->path)}}" />
                             <div class="cn-title">
                                 <a href="{{ route('frontend.show-posts', $post->slug)}}" title="{{ $post->title}}"> {{ $post->title }}</a>
                             </div>
@@ -123,7 +120,6 @@ Home
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>
@@ -181,7 +177,7 @@ Home
                         @foreach ($posts as $post)
                             <div class="col-md-4">
                                 <div class="mn-img">
-                                    <img src="{{$post->images->first()->path }}" />
+                                    <img style="height: 200px; width: 200px;"  src="{{$post->images->first()->path}}"  title="{{ $post->title}}" />
                                     <div class="mn-title">
                                         <a href="{{ route('frontend.show-posts', $post->slug)}}" title="{{ $post->title}}"> {{ $post->title }}</a>
                                     </div>

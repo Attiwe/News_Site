@@ -6,14 +6,14 @@
 @section('body')
 <br>
 <!-- Profile Start -->
-<div class="dashboard container">
+<div class="dashboard container">   
   <!-- Sidebar -->
   <aside class="col-md-3 nav-sticky dashboard-sidebar">
       <!-- User Info Section -->
       <div class="user-info text-center p-3">
-          <img src="{{asset('test.jpg')}}" alt="User Image" class="rounded-circle mb-2"
+          <img src="{{Auth::user()->image}}" alt="User Image" class="rounded-circle mb-2"
               style="width: 80px; height: 80px; object-fit: cover" />
-          <h5 class="mb-0" style="color: #ff6f61">Salem Taha</h5>
+          <h5 class="mb-0 text-info" > {{Auth::user()->username}}</h5>
       </div>
 
       <!-- Sidebar Menu -->
@@ -32,12 +32,24 @@
 
   <!-- Main Content -->
   <div class="main-content">
+    <!-- message error -->
+    @if (count($errors) > 0)
+    <div class="alert alert-info">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
       <!-- Profile Section -->
-      <section id="profile" class="content-section active">
-          <h2>User Profile</h2>
+     <form action="{{route('frontend.add-post')}}"  method="POST" enctype="multipart/form-data">
+        @csrf
+     <section id="profile" class="content-section active">
+          <h2>{{Auth::user()->name}}</h2>
           <div class="user-profile mb-3">
-              <img src="{{asset('test.jpg')}}" alt="User Image" class="profile-img rounded-circle" style="width: 100px; height: 100px;" />
-              <span class="username">Salem Taha</span>
+              <img name="image" src="{{Auth::user()->image}}" alt="User Image" class="profile-img rounded-circle" style="width: 100px; height: 100px;" />
+              <span class="username"> {{Auth::user()->name}}</span>
           </div>
           <br>
 
@@ -46,50 +58,60 @@
               <h2>Add Post</h2>
               <div class="post-form p-3 border rounded">
                   <!-- Post Title -->
-                  <input type="text" id="postTitle" class="form-control mb-2" placeholder="Post Title" />
+                  <input name="title" type="text" id="postTitle" value="{{ old('title') }}" class="form-control mb-2" placeholder="Post Title" />
+                  @error('title')
+                      <div class="text-danger">{{ $message }}</div>
+                  @enderror
 
                   <!-- Post Content -->
-                  <textarea id="postContent" class="form-control mb-2" rows="3" placeholder="What's on your mind?"></textarea>
+                  <textarea name="desc" id="postContent" value="{{ old('desc') }}" class="form-control mb-2" rows="3" placeholder="What's on your mind?"></textarea>
+                  @error('desc')
+                      <div class="text-danger">{{ $message }}</div>
+                  @enderror
 
                   <!-- Image Upload -->
-                  <input type="file" id="postImage" class="form-control mb-2" accept="image/*" multiple />
+                  <input name="images[]" type="file" id="postImage"   multiple accept="image/*"  class="form-control mb-2" />
                   <div class="tn-slider mb-2">
                       <div id="imagePreview" class="slick-slider"></div>
                   </div>
 
                   <!-- Category Dropdown -->
-                  <select id="postCategory" class="form-select mb-2">
-                      <option value="">Select Category</option>
-                      <option value="general">General</option>
-                      <option value="tech">Tech</option>
-                      <option value="life">Life</option>
+                  <select name="category_id" id="postCategory"  class="form-select mb-2">
+                        <option value="" class="form-select disabled text-primary " >Select Category</option>
+                  @foreach ($categories as $category)
+                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endforeach
                   </select>
 
                   <!-- Enable Comments Checkbox -->
                   <label class="form-check-label mb-2">
-                      <input type="checkbox" class="form-check-input" /> Enable Comments
+                      <input name="comment_able"  type="checkbox" class="form-check-input" /> Enable Comments
                   </label><br>
 
                   <!-- Post Button -->
-                  <button class="btn btn-primary post-btn">Post</button>
+                  <button type="submit" class="btn btn-primary btn-sm post-btn">Post</button>
               </div>
           </section>
+    </form>
 
           <!-- Posts Section -->
           <section id="posts" class="posts-section">
               <h2>Recent Posts</h2>
               <div class="post-list">
                   <!-- Post Item -->
+
+                  @foreach ($posts as $post )
+                  
                   <div class="post-item mb-4 p-3 border rounded">
                       <div class="post-header d-flex align-items-center mb-2">
-                          <img src="{{asset('test.jpg')}}" alt="User Image" class="rounded-circle" style="width: 50px; height: 50px;" />
+                          <img title="{{Auth::user()->name}}" src="{{Auth::user()->image}}" alt="User Image" class="rounded-circle" style="width: 50px; height: 50px;" />
                           <div class="ms-3">
-                              <h5 class="mb-0">Salem Taha</h5>
-                              <small class="text-muted">2 hours ago</small>
+                              <h5 class="mb-0"> {{Auth::user()->username}} </h5>
+                              <small class="text-muted"> {{Auth::user()->created_at->diffForHumans()}} </small>
                           </div>
                       </div>
-                      <h4 class="post-title">Post Title Here</h4>
-                      <p class="post-content">This is an example post content. The user can share their thoughts, upload images, and more.</p>
+                          <h4 class="post-title"> {{ $post->title }} </h4>
+                      <p class="post-content"> {!!$post->desc!!} </p>
 
                       <div id="newsCarousel" class="carousel slide" data-ride="carousel">
                           <ol class="carousel-indicators">
@@ -98,25 +120,15 @@
                               <li data-target="#newsCarousel" data-slide-to="2"></li>
                           </ol>
                           <div class="carousel-inner">
-                              <div class="carousel-item  active">
-                                  <img src="{{asset('test.jpg')}}" class="d-block w-100" alt="First Slide">
+                              @foreach ($post->images as $image)
+                              <div class="carousel-item @if($loop->index == 0 ) active @endif">
+                                  <img style="width: 1280px;  : 900px;" src="{{asset($image->path)}}" class="d-block w-100" alt="First Slide">
                                   <div class="carousel-caption d-none d-md-block">
-                                      <h5>dsfdk</h5>
-                                      <p>
-                                          oookok
-                                      </p>
+                                      <h5> {{ $post->title }} </h5>
+                                       
                                   </div>
-                              </div>
-                              <div class="carousel-item ">
-                                  <img src="{{asset('test.jpg')}}" class="d-block w-100" alt="First Slide">
-                                  <div class="carousel-caption d-none d-md-block">
-                                      <h5>dsfdk</h5>
-                                      <p>
-                                          oookok
-                                      </p>
-                                  </div>
-                              </div>
-
+                                </div>
+                                @endforeach
                               <!-- Add more carousel-item blocks for additional slides -->
                           </div>
                           <a class="carousel-control-prev" href="#newsCarousel" role="button" data-slide="prev">
@@ -128,27 +140,36 @@
                               <span class="sr-only">Next</span>
                           </a>
                       </div>
+                      
+                      <div class="post-actions d-flex justify-content-between ">
+                        <div class="post-stats">
+                            <!-- View Count -->
+                            <span class="me-3">
+                                <i class="fas fa-eye"></i> {{ $post->number_view }}
+                            </span>
+                        </div>
 
-                      <div class="post-actions d-flex justify-content-between">
-                          <div class="post-stats">
-                              <!-- View Count -->
-                              <span class="me-3">
-                                  <i class="fas fa-eye"></i> 123 views
-                              </span>
-                          </div>
+                        <div class="d-flex gap-2">
+                            <!-- Edit -->
+                            <a href=" " class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
 
-                          <div>
-                              <a href="" class="btn btn-sm btn-outline-primary">
-                                  <i class="fas fa-edit"></i> Edit
-                              </a>
-                              <a href="" class="btn btn-sm btn-outline-primary">
-                                  <i class="fas fa-thumbs-up"></i> Delete
-                              </a>
-                              <button class="btn btn-sm btn-outline-secondary">
-                                  <i class="fas fa-comment"></i> Comments
-                              </button>
-                          </div>
-                      </div>
+                            <!-- Delete -->
+                            <form action="{{ route('frontend.delete-post', 'delete') }}" method="POST" >
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id" value="{{ $post->id }}" >
+                                <button type="submit" class="btn  btn-sm btn-outline-danger mr-2 ml-2">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+                            <!-- Comments -->
+                            <a href=" " class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-comment"></i> Comments
+                            </a>
+                        </div>
+                    </div>
 
                         <!-- Display Comments -->
                         <div class="comments">
@@ -162,15 +183,35 @@
                           <!-- Add more comments here for demonstration -->
                          </div>
                   </div>
-
+                  @endforeach
                   <!-- Add more posts here dynamically -->
               </div>
           </section>
       </section>
-  </div>
+   </div>
 </div>
 <!-- Profile End -->
 <br>
 @endsection
+
+  <!-- package bootstrap-fileinput -->
+@push('js')
+<script>
+    $(document).ready(function() {
+        // File input without upload button
+        $("#postImage").fileinput({
+            showUpload: false,
+            previewFileType: 'any'
+        });
+
+        // Initialize summernote
+        $('#postContent').summernote({
+            height: 300
+        });
+    });
+</script>
+
+@endpush
+
 
  

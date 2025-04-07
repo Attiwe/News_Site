@@ -1,8 +1,7 @@
 @extends('layout.frontend.app')
  
-   
-@section('title')
-{{ $mainPosts->title      }}
+ @section('title')
+{{ $mainPosts->title   }}
 @endsection
 @section('breadcrumb')
 @parent
@@ -63,12 +62,16 @@
                                     @foreach ($mainPosts->images as $image)
                                     <div class="col-md-6">
                                         <div class="tn-img">
-                                            <img src="{{$image->path}}" />
+                                            <img src="{{ asset($image->path) }}" />
                                             <div class="tn-title">
                                                 <a href="">{{ $image->title }} </a>
                                             </div>
                                         </div>
-                                        <p class="tn-description">{{ substr($image->desc, 0, 80) }} .</p>
+                                        <p class="tn-description">
+                                            <strong class="text-primary">
+                                                {!! $mainPosts->desc !!}
+                                            </strong>
+                                        </p>
                                     </div>
                                     @endforeach
 
@@ -82,6 +85,7 @@
                 <div class="comment-section">
 
                     <!-- Comment Input -->
+                     @if($mainPosts-> comment_able == true)
                      <form  id="commentForm" >
                         @csrf
                      <div class="comment-input">
@@ -92,7 +96,10 @@
                         <input name="ip_address" type="hidden" value="{{request()->ip()}}" />
                          <button title="Post" type="submit">Comment</button>
                     </div>
-                     </form>
+                 </form>
+                 @else
+                     <p class="text-danger" >Comments are disabled for this post.</p>
+                     @endif
 
                      <!-- alert show error -->
                      <div style="display:none"  id='errorM' class="alert alert-danger" role="alert">       
@@ -110,13 +117,29 @@
                             </div>
                         </div> 
                         @endforeach
+
                         <!-- Add more comments here for demonstration -->
                     </div>
-
-                    <!-- Show More Button -->
-                    <button id="showMoreBtn" class="show-more-btn">Show more</button>
+                    @if($mainPosts->comments->count() > 0)
+                          <div id="commentsContainer">
+                            @foreach($mainPosts->comments as $comment)
+                                <div class="comment">
+                                    <img src="{{ $comment->user->image }}" alt="{{ $comment->user->name }}" class="comment-img" />
+                                    <div class="comment-content">
+                                        <span class="username">{{ $comment->user->name }}</span>
+                                        <p class="comment-text">{{ $comment->commit }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button id="showMoreBtn" class="show-more-btn">Show more</button>
+                    @else
+                         <div id="commentsContainer"></div>
+                        <button id="showMoreBtn" class="show-more-btn" style="display:none;">Show more</button>
+                        <p id="noCommentsText">No comments yet</p>  
+                    @endif                        
                 </div>
-
+             
                 <!-- Related News -->
                 <div class="sn-related">
                     <h2>Related News</h2>
@@ -124,7 +147,7 @@
                         @foreach ($category_posts as $posts)
                         <div class="col-md-4">
                             <div class="sn-img">
-                                <img src="{{$posts->images->first()->path}}" class="img-fluid"
+                                <img src="{{ asset($posts->images->first()->path) }}" class="img-fluid"
                                     alt="{{$posts->title}}" />
                                 <div class="sn-title">
                                     <a href="{{route('frontend.show-posts', $posts->slug)}}"> {{ $posts->title }}</a>
@@ -172,7 +195,7 @@
                                     @foreach ($popular_posts as $popular_post)
                                     <div class="tn-news">
                                         <div class="tn-img">
-                                            <img src="{{$popular_post->images->first()->path}}"
+                                            <img src="{{asset($popular_post->images->first()->path)}}"
                                                 alt="{{$popular_post->title}}" />
                                         </div>
                                         <div class="tn-title">
@@ -187,15 +210,13 @@
                                     @foreach ($last_posts as $last_post)
                                     <div class="tn-news">
                                         <div class="tn-img">
-                                            <img src="{{$last_post->images->first()->path}}" />
+                                            <img src="{{ asset($last_post->images->first()->path) }}" alt="{{$last_post->title}}" />
                                         </div>
                                         <div class="tn-title">
-                                            <a
-                                                href="{{route('frontend.show-posts', $last_post->slug)}} ">{{$last_post->title}}</a>
+                                            <a href="{{route('frontend.show-posts', $last_post->slug)}}">{{$last_post->title}}</a>
                                         </div>
                                     </div>
                                     @endforeach
-
                                 </div>
                             </div>
                         </div>
@@ -206,7 +227,7 @@
                             @foreach ($categories as $category)
                             <ul>
                                 <li><a href=""> {{ $category->name }} </a><span>
-                                        ({{ $category->posts->count() }})</span></li><br>
+                         ({{ $category->posts->count() }})</span></li><br>
                             </ul>
                             @endforeach
                         </div>
@@ -249,39 +270,52 @@ $(document).on('click', '#showMoreBtn', function(e) {
             alert('error');
         }
     });
-});
+}); 
 
 // add comment
-$(document).on('submit','#commentForm',function(e){
+$(document).off('submit', '#commentForm').on('submit', '#commentForm', function(e){
     e.preventDefault();
-    var formData =  new FormData($(this)[0]);
-    $('#commentBox').val('');   // clear comment box
+
+    var formData = new FormData(this);
+
+     
+    $('#submitCommentBtn').attr('disabled', true).text('جاري الإرسال...');
+
+     $('#errorM').hide().text('');
+
     $.ajax({
-        url: "{{route('frontend.add-comment')}}",
+        url: "{{ route('frontend.add-comment') }}",
         type: 'POST',
         data: formData,
         processData: false,
         contentType: false,
         success: function(data){
-             $('#errorM').hide();  // hide error message
+            $('#commentBox').val(''); 
+
             $('.show-more-btn').before(`
-            <div class="comment">
-                <img src="${data.comment.user.image}" alt="${data.comment.user.name}" class="comment-img" />
-                <div class="comment-content">
-                    <span class="username"> ${data.comment.user.name} </span>
-                    <p class="comment-text">${data.comment.commit}</p>
+                <div class="comment">
+                    <img src="${data.comment.user.image}" alt="${data.comment.user.name}" class="comment-img" />
+                    <div class="comment-content">
+                        <span class="username"> ${data.comment.user.name} </span>
+                        <p class="comment-text">${data.comment.commit}</p>
+                    </div>
                 </div>
-            </div>
-        `);
+            `);
+ 
+             $('#submitCommentBtn').attr('disabled', false).text('إرسال');
         },
 
         error: function(data){
-           var response = $.parseJSON(data.responseText);
-           $('#errorM').text(response.errors.commit);
-           $('#errorM').show();
-         }
+            var response = $.parseJSON(data.responseText);
+
+            if(response.errors && response.errors.commit){
+                $('#errorM').text(response.errors.commit).show();
+            }
+
+             $('#submitCommentBtn').attr('disabled', false).text('إرسال');
+        }
     });
-})
+});
 
 </script>
 @endpush    

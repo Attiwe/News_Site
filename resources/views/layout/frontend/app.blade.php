@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="Bootstrap News Template - Free HTML Templates" name="keywords" />
     <meta content="Bootstrap News Template - Free HTML Templates" name="description" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link href=" {{asset('assets/frontend/img/favicon.ico')}}" rel="icon" />
@@ -22,7 +23,15 @@
 
     <!-- Template Stylesheet -->
     <link href=" {{asset('assets/frontend/css/style.css')}}" rel="stylesheet" />
- </head>
+
+    <!-- File Input -->
+    <link href=" {{asset('assets/vendor/file_input/css/fileinput.min.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+ 
+    <!-- Summernote -->
+    <link href=" {{asset('assets/vendor/summernotes/summernote-bs4.css')}}" rel="stylesheet" />
+     
+  </head>
 
 <body>
 
@@ -52,6 +61,13 @@
 
     <!-- Template Javascript -->
     <script src=" {{asset('assets/frontend/js/main.js')}} "></script>
+
+    <!-- File Input -->
+    <script src=" {{asset('assets/vendor/file_input/js/fileinput.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- Summernote -->
+    <script src=" {{asset('assets/vendor/summernotes/summernote-bs4.js')}}"></script>
 
     <!--  for custom js used jquery and ajax -->
      @stack('js') 

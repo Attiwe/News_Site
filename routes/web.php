@@ -9,6 +9,8 @@ use App\Http\Controllers\frontend\ShowPostsController;
 use App\Http\Controllers\frontend\ContactUsController;
 use App\Http\Controllers\frontend\SearchController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\frontend\dashboard\ProfileController;
+
 
 
 
@@ -43,8 +45,10 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::match(['get','post'],'/search',SearchController::class)->name('search');
 
     //==================routes dashboard=========================== 
-    Route::get('test', function(){
-        return view('frontend.dashboard.profile');
+    Route::controller(ProfileController::class)->prefix('account')->middleware(['auth','verified'])->group(function(){
+        Route::get('/', 'index')->name('dashboard');
+        Route::post('/add-post', 'addPost')->name('add-post');
+        Route::delete('/delete-post/{id}', 'deletePost')->name('delete-post');
     });
     
     

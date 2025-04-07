@@ -79,9 +79,10 @@
         @endforeach
             </div>
           </div>
-          <a href="{{route('frontend.show-posts', $last_posts->first()->slug)}} " title="Single Page"
-            class="nav-item nav-link">Single Page</a>
-          <a href="dashboard.html" class="nav-item nav-link">Dashboard</a>
+          
+            @auth
+          <a href="{{route('frontend.dashboard')}}" class="nav-item nav-link">Dashboard</a>
+          @endauth
           <a href="{{route('frontend.contact-us')}} " title="Contact Us" class="nav-item nav-link">Contact Us</a>
         </div>
         <div class="social ml-auto">

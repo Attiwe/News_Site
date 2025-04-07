@@ -38,7 +38,7 @@ class ShareViewProvider extends ServiceProvider
          });
        }
         $popular_posts = Cache::get('popular_posts');
-        
+
         $getRelatedNewsSite = RelatedNewsSite::select('name','url')->get();
         $categories = Category::select('id','name','slug')->get();
 
