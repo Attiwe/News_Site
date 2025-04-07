@@ -21,7 +21,7 @@ class ShareViewProvider extends ServiceProvider
   
     public function boot(): void
     {
-        //  Cache::forget('last_posts');
+        // Cache::forget('last_posts');
         if(!Cache::has('last_posts')){
         $last_posts = Post::select('id', 'title', 'slug')->latest()->limit(4)->get();
         Cache::remember('last_posts', 3600, function () use ($last_posts) {

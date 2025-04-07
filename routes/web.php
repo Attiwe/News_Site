@@ -48,6 +48,7 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::controller(ProfileController::class)->prefix('account')->middleware(['auth','verified'])->group(function(){
         Route::get('/', 'index')->name('dashboard');
         Route::post('/add-post', 'addPost')->name('add-post');
+        Route::get('/edit-post/{slug}', 'editPost')->name('edit-post');
         Route::delete('/delete-post/{id}', 'deletePost')->name('delete-post');
     });
     
