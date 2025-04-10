@@ -80,9 +80,9 @@
             </div>
           </div>
           
-            @auth
+        
           <a href="{{route('frontend.dashboard')}}" class="nav-item nav-link">Dashboard</a>
-          @endauth
+        
           <a href="{{route('frontend.contact-us')}} " title="Contact Us" class="nav-item nav-link">Contact Us</a>
         </div>
         <div class="social ml-auto">
@@ -91,6 +91,29 @@
           <a href="{{App\Models\Setting::first()->linkendin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
           <a href="{{App\Models\Setting::first()->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
           <a href="{{App\Models\Setting::first()->youtube}}" target="_blank"><i class="fab fa-youtube"></i></a>
+
+           <!-- Notification Dropdown -->
+             @auth
+            <a href="#" class="nav-link dropdown-toggle" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell"></i>
+                <span class="badge badge-danger">{{auth()->user()->unreadNotifications->count() }} </span>
+            </a>
+           @endauth
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown" style="width: 400px;">
+              <h6 class="dropdown-header">Notifications</h6>
+
+              @forelse (auth()->user()->unreadNotifications as $notification)
+                <div class="dropdown-item d-flex justify-content-between align-items-center">
+                    <span> <a href="{{ $notification->data['link'] }}">{{$notification->data['title']}}</a></span>
+                    <form action="" method="POST">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+              @empty
+                <div class="dropdown-item text-center">No notifications</div>
+              @endforelse
+          </div>
+      
         </div>
       </div>
     </nav>

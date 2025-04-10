@@ -59,8 +59,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row tn-slider">
+
                                     @foreach ($mainPosts->images as $image)
-                                    <div class="col-md-6">
+                                     <div class="col-md-6">
                                         <div class="tn-img">
                                             <img src="{{ asset($image->path) }}" />
                                             <div class="tn-title">
@@ -73,26 +74,27 @@
                                             </strong>
                                         </p>
                                     </div>
+ 
                                     @endforeach
-
+ 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+ 
                 <!-- Comment Section -->
                 <div class="comment-section">
-
                     <!-- Comment Input -->
                      @if($mainPosts-> comment_able == true)
                      <form  id="commentForm" >
                         @csrf
                      <div class="comment-input">
-                        
                         <input name="commit" type="text" placeholder="Add a comment..." id="commentBox" />
                         <input name="post_id" type="hidden" value="{{$mainPosts->id}}" />
-                        <input name="user_id" type="hidden" value=" 1" />
+                        
+                        <input name="user_id" type="hidden" value=" {{$mainPosts->user->id}}" />
+                       
                         <input name="ip_address" type="hidden" value="{{request()->ip()}}" />
                          <button title="Post" type="submit">Comment</button>
                     </div>
@@ -110,10 +112,10 @@
                     <div class="comments">
                         @foreach ($mainPosts->comments as $comment)
                         <div class="comment">
-                            <img src="{{ $comment->user->image }}" alt=" {{ $comment->user->name }}" class="comment-img" />
+                            <img src="{{asset($comment->user->image)}}" alt=" {{ $comment->user->name }}" class="comment-img" />
                             <div class="comment-content">
                                 <span class="username"> {{ $comment->user->name }} </span>
-                                <p class="comment-text">{{$comment->commit}}</p>
+                                <p class="comment-text">{{$comment->commit}}</p> 
                             </div>
                         </div> 
                         @endforeach
@@ -124,7 +126,7 @@
                           <div id="commentsContainer">
                             @foreach($mainPosts->comments as $comment)
                                 <div class="comment">
-                                    <img src="{{ $comment->user->image }}" alt="{{ $comment->user->name }}" class="comment-img" />
+                                    <img src="{{asset($comment->user->image)}}" alt="{{ $comment->user->name }}" class="comment-img" />
                                     <div class="comment-content">
                                         <span class="username">{{ $comment->user->name }}</span>
                                         <p class="comment-text">{{ $comment->commit }}</p>
@@ -167,7 +169,7 @@
                             @foreach ($category_posts as $category_post)
                             <div class="nl-item">
                                 <div class="nl-img">
-                                    <img src="{{$category_post->images->first()->path}}"
+                                    <img src="{{asset($category_post->images->first()->path)}}"
                                         alt='{{$category_post->title}}' />
                                 </div>
                                 <div class="nl-title">

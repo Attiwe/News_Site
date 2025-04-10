@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Notifications\CommentNotification;
+     
+ 
 
 
 class ShowPostsController extends Controller
@@ -19,6 +22,9 @@ class ShowPostsController extends Controller
         ->select('id', 'title', 'slug')
         ->limit(5)
         ->get();
+        
+        $mainPosts->increment('number_view'); //count Number view image
+          
         return view('frontend.show_posts', compact('mainPosts', 'category_posts'));
     }
     public function showMoreComments($slug){
@@ -28,8 +34,9 @@ class ShowPostsController extends Controller
     }
 
     public function addComment(Request $request){
+     
 
-        $request->validate([
+         $request->validate([
             'commit' => ['required','string','max:255'],
             'post_id' => ['required','exists:posts,id'],
             'user_id' => ['required','exists:users,id'],
@@ -42,7 +49,12 @@ class ShowPostsController extends Controller
             'user_id' => $request->user_id,
             'ip_address' => $request->ip_address,
         ]);
+        $post = Post::findOrFail($request->post_id);
+        $post->user->notify (new CommentNotification($comment, $post));
+        
         $comment->load('user'); //dowenlode related user
+        
+
         if($comment){
             return response()->json([
             'status' => 'success', 

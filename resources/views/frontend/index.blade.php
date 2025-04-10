@@ -22,7 +22,6 @@ Home
                             </div>
                         </div>
                         @endforeach
-                        
                     </div>
                 </div>
                 @php $newPost = $posts->take(4); @endphp

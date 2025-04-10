@@ -10,11 +10,8 @@ use App\Http\Controllers\frontend\ContactUsController;
 use App\Http\Controllers\frontend\SearchController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\frontend\dashboard\ProfileController;
-
-
-
-
-
+use App\Http\Controllers\frontend\dashboard\SettingController;
+use App\Http\Controllers\frontend\dashboard\NotificationsController;
 
 Auth::routes();
  
@@ -34,7 +31,7 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::controller(ShowPostsController::class)->group(function(){
         Route::get('/show-posts/{slug}', 'index')->name('show-posts');
         Route::get('/show-more-comments/{slug}', 'showMoreComments')->name('show-more-comments');
-        Route::post('/add-comment', 'addComment')->name('add-comment');
+        Route::post('/add-comment', 'addComment')->name('add-comment');//ajax
     });
     //==================routes contact-us=========================== 
     Route::controller(ContactUsController::class)->group(function(){
@@ -48,9 +45,24 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::controller(ProfileController::class)->prefix('account')->middleware(['auth','verified'])->group(function(){
         Route::get('/', 'index')->name('dashboard');
         Route::post('/add-post', 'addPost')->name('add-post');
-        Route::get('/edit-post/{slug}', 'editPost')->name('edit-post');
-        Route::delete('/delete-post/{id}', 'deletePost')->name('delete-post');
-    });
+        Route::get('/post/{slug}/edit', 'editPost')->name('edit-post');
+        Route::put('/update-post', 'updatePost')->name('update-post');
+        Route::get('/show-more-comments/{id}', 'showMoreComments')->name('show-more-comments-dashbord');//ajax
+        Route::delete('/delete-post/{id}', 'deletePost')->name('delete-post');  
+    }); 
     
+    //==================routes setting profile=========================== 
+    Route::controller(SettingController::class)->prefix('dashboard/account')->middleware(['auth','verified'])->group(function(){
+        Route::get('/setting', 'index')->name('setting');
+        Route::put('/setting', 'update')->name('update-setting');
+    });
+       //==================routes notifications=========================== 
+       Route::controller(NotificationsController::class)->prefix('dashboard/account')->group(function(){
+        Route::get('/notifications', 'index')->name('notifications-profile');
+       });
+
     
  });    
+ 
+   
+  

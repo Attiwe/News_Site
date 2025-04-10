@@ -13,7 +13,7 @@
       <div class="user-info text-center p-3">
           <img src="{{Auth::user()->image}}" alt="User Image" class="rounded-circle mb-2"
               style="width: 80px; height: 80px; object-fit: cover" />
-          <h5 class="mb-0 text-info" > {{Auth::user()->username}}</h5>
+          <h5 class="mb-0 text-info" > {{Auth::user()->username }}</h5>
       </div>
 
       <!-- Sidebar Menu -->
@@ -21,10 +21,10 @@
           <a href="./dashboard.html" class="list-group-item list-group-item-action active menu-item" data-section="profile">
               <i class="fas fa-user"></i> Profile
           </a>
-          <a href="./notifications.html" class="list-group-item list-group-item-action menu-item" data-section="notifications">
+          <a href="{{route('frontend.notifications-profile')}}" class="list-group-item list-group-item-action menu-item" data-section="notifications">
               <i class="fas fa-bell"></i> Notifications
           </a>
-          <a href="./setting.html" class="list-group-item list-group-item-action menu-item" data-section="settings">
+          <a href="{{route('frontend.setting')}}" class="list-group-item list-group-item-action menu-item" data-section="settings">
               <i class="fas fa-cog"></i> Settings
           </a>
       </div>
@@ -135,28 +135,25 @@
                 <div class="post-actions d-flex justify-content-between mt-3">
                     <span><i class="fas fa-eye"></i> {{ $post->number_view }}</span>
                     <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i> Edit</a>
+                             <!-- edite  -->
+                            <a href="{{ route('frontend.edit-post',$post->slug) }}" class="btn btn-sm btn-outline-danger mr-2 ml-2"><i class="fas fa-trash"></i> Edite</a>
+                              <!-- end edite -->
+                              
                         <form action="{{ route('frontend.delete-post', 'delete') }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="id" value="{{ $post->id }}">
-                            <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i> Delete</button>
+                            <button type="submit" class="btn btn-sm btn-outline-danger mr-2 "><i class="fas fa-trash"></i> Delete</button>
                         </form>
-                        <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-comment"></i> Comments</a>
+                           <!-- comments -->
+                        <a   class="btn btn-sm btn-outline-secondary show-comment" post_id= "{{ $post->id }}" ><i class="fas fa-comment"></i> Comments</a>
                     </div>
                 </div>
 
-                <!-- Comments (static example) -->
-                <div class="comments mt-3">
-                    <div class="comment">
-                        <img src="{{ asset('test.jpg') }}" alt="User Image" class="comment-img" />
-                        <div class="comment-content">
-                            <span class="username">Username</span>
-                            <p class="comment-text">first comment</p>
-                        </div>
-                    </div>
-                </div>
+                <!--  show Comments   -->
+                <div id="display-comments{{$post->id}}" class="comments mt-3" style="display: none;">
             </div>
+            <br>
                 @empty
                     <div class="alert alert-info text-center">No posts available</div>
                 @endforelse
@@ -187,6 +184,40 @@
             height: 300
         });
     });
+</script>
+
+ <!-- show comments in dashboard -->
+<script>
+    $(document).on('click', '.show-comment', function($e) {                         
+        $e.preventDefault(); 
+        var post_id = $(this).attr('post_id');
+        $.ajax({
+            type: "GET",
+            url: '{{ route("frontend.show-more-comments-dashbord",":post_id") }}'.replace(':post_id', post_id),
+
+            success:function(data){
+                $('#display-comments' + post_id).empty();
+                $.each(data, function(index, comment) {
+                    $('#display-comments' + post_id).append(`
+                        <div class="comment">
+                            <img src="${comment.user.image}" alt=" ${comment.user.name}" class="comment-img" />
+                            <div class="comment-content">
+                                <span class="username"> ${comment.user.name} </span>
+                                <p class="comment-text">${comment.commit}</p>
+                            </div>
+                        </div>
+                    `);
+                })
+                $('#display-comments' + post_id).show();
+                // $('.show-comment').hide();  
+            },
+            
+           
+
+            
+        })
+        
+    })
 </script>
 
 @endpush

@@ -93,7 +93,7 @@ use Illuminate\Support\Facades\Storage;
         if(isset($data['image']) && $data['image']){
             $file = $data['image'];
             $nameImage = Str::slug($data['username']) . time() . "." . $file->getClientOriginalExtension();
-            $path = $file->storeAs('uploads/users', $nameImage, ['disk' => 'uploads']);
+            $path = $file->storeAs('uploads/user', $nameImage, ['disk' => 'uploads']);
             
             $user->update([
                 'image' => $path,
