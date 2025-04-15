@@ -4,9 +4,14 @@
 {{$categorys->name}}
 @endsection
 
+@push('cononical')
+    <link rel="canonical" href="{{url()->full()}}">
+@endpush
+
 @section('breadcrumb')
 @parent
- <li class="breadcrumb-item"><a  >{{$categorys->name}}</a></li>
+<li class="breadcrumb-item"><a href="{{route('frontend.post')}}">Home</a></li>
+<li class="breadcrumb-item"><a  >{{$categorys->name}}</a></li>
 @endsection
 @section('body')
 

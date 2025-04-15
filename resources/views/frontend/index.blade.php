@@ -4,6 +4,19 @@
 Home
 @endsection
 
+@push('cononical')
+    <link rel="canonical" href="{{url()->full()}}">
+@endpush
+
+@section('mate_desc')
+{{$getSetting->smail_desc}}
+@endsection
+
+@section('breadcrumb')
+@parent
+<li class="breadcrumb-item"><a href="{{route('frontend.post')}}">Home</a></li>
+@endsection
+
 @section('body')
 @php $lasts_post = $posts->take(3); @endphp
     <!-- Top News Start-->
@@ -42,6 +55,7 @@ Home
             </div>
         </div>
     </div>
+    
     <!-- Top News End-->
 
     <!-- Category News Start-->

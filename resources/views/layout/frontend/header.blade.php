@@ -32,15 +32,15 @@
     <div class="row align-items-center">
       <div class="col-lg-3 col-md-4">
         <div class="b-logo">
-          <a href="index.html">
-            <img src="img/logo.png" alt="Logo" />
+          <a href=" #">
+            <img style="height: 150px; width: 150px;" src="{{ asset('logo/logo.jpg') }}" alt="Logo" />
           </a>
         </div>
       </div>
       <div class="col-lg-6 col-md-4">
         <div class="b-ads">
-          <a href="https://htmlcodex.com">
-            <img src="img/ads-1.jpg" alt="Ads" />
+          <a href="#">
+            <img  style="height: 40px; width: 60px;" src="{{ asset('logo/sub_logo.jpg') }}" alt="Ads" />
           </a>
         </div>
       </div>
@@ -81,8 +81,9 @@
           </div>
           
         
-          <a href="{{route('frontend.dashboard')}}" class="nav-item nav-link">Dashboard</a>
+          <a href="{{route('frontend.dashboard')}}" class="nav-item nav-link">Account</a>
         
+          <a href="{{route('frontend.notifications-profile')}} " title="Notifications" class="nav-item nav-link"> Notifications </a>
           <a href="{{route('frontend.contact-us')}} " title="Contact Us" class="nav-item nav-link">Contact Us</a>
         </div>
         <div class="social ml-auto">
@@ -92,28 +93,37 @@
           <a href="{{App\Models\Setting::first()->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
           <a href="{{App\Models\Setting::first()->youtube}}" target="_blank"><i class="fab fa-youtube"></i></a>
 
-           <!-- Notification Dropdown -->
-             @auth
-            <a href="#" class="nav-link dropdown-toggle" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell"></i>
-                <span class="badge badge-danger">{{auth()->user()->unreadNotifications->count() }} </span>
-            </a>
-           @endauth
+          <!-- Notification Dropdown -->
+          @auth
+          <a href="#" class="nav-link dropdown-toggle" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bell"></i>
+              <span class="badge badge-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
+          </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown" style="width: 400px;">
-              <h6 class="dropdown-header">Notifications</h6>
-
-              @forelse (auth()->user()->unreadNotifications as $notification)
-                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                    <span> <a href="{{ $notification->data['link'] }}">{{$notification->data['title']}}</a></span>
-                    <form action="" method="POST">
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                    </form>
-                </div>
-              @empty
-                <div class="dropdown-item text-center">No notifications</div>
-              @endforelse
-          </div>
-      
+              <div class="dropdown-header"> <a href="{{ route('frontend.notifications-profile') }}">Notifications</a> </div>
+              
+              <!-- Notifications read all -->
+              <div class="dropdown-item">
+                  <a href="{{ route('frontend.read-all') }}" class="btn btn-sm btn-primary" style="width: 100%;  ">Read All</a>
+              </div>
+                @forelse (auth()->user()->unreadNotifications()->latest()->take(2)->get() as $notification)
+                    <div class="dropdown-item d-flex justify-content-between align-items-center">
+                        <span>
+                            <a href="{{ $notification->data['link'] }}?notify={{ $notification->id }}" class="text-dark">{{ $notification->data['title'] }}</a>
+                        </span>
+                        <form action="{{ route('frontend.delete-notification', $notification->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="id" value="{{ $notification->id }}">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </div>
+                @empty
+                    <div class="dropdown-item text-center">No notifications</div>
+                @endforelse
+            </div>
+            @endauth
+                  
         </div>
       </div>
     </nav>

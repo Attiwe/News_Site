@@ -25,7 +25,7 @@ class CheakSettingProvider extends ServiceProvider
                 'stie_name' => 'News Social',
                 'email' => 'ebrahim@gmail.com',
                 'favicon' => 'favicon.ico',
-                'logo' => 'logo.png',
+                'logo' =>  asset('logo/logo.jpg'),
                 'phone' => '+01150629726',
                 'facebook' => 'https://facebook.com/newssocial',
                 'linkendin' => 'https://linkedin.com/company/newssocial',
@@ -34,7 +34,8 @@ class CheakSettingProvider extends ServiceProvider
                 'instagram' => 'https://instagram.com/newssocial',
                 'country' => 'United States',
                 'city' => 'New York',
-                'street' => '123 News Street'
+                'street' => '123 News Street',
+                'smail_desc' => 'This is a sample description for the website.(test)',
             ]);
          });
 

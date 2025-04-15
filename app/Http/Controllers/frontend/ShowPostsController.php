@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Category;
 use App\Notifications\CommentNotification;
      
  
@@ -14,6 +15,7 @@ use App\Notifications\CommentNotification;
 class ShowPostsController extends Controller
 {
     public function index($slug){
+
         $mainPosts = Post::active()->with(['comments'=>function($query){
             $query->limit(3);
         }])->where('slug', $slug)->firstorfail();
@@ -24,7 +26,6 @@ class ShowPostsController extends Controller
         ->get();
         
         $mainPosts->increment('number_view'); //count Number view image
-          
         return view('frontend.show_posts', compact('mainPosts', 'category_posts'));
     }
     public function showMoreComments($slug){
@@ -71,4 +72,12 @@ class ShowPostsController extends Controller
 
         
      }
+
+    public function categoryPosts($slug)
+    {
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $posts = $category->posts()->latest()->paginate(10);
+        
+        return view('frontend.category-posts', compact('category', 'posts'));
+    }
 }

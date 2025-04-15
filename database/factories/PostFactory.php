@@ -24,6 +24,7 @@ class PostFactory extends Factory
             'title' => fake('ar_SA')->sentence(3),
             'desc' => fake()->paragraph(5),
             'number_view' =>  rand(0, 100),
+            'smail_desc' => fake()->sentence(3),
             'comment_able' => fake()->boolean(),
         ];
     }

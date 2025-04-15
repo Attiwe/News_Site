@@ -6,29 +6,9 @@
 @section('body')
 <br>
 <!-- Profile Start -->
-<div class="dashboard container">   
+<div class="dashboard   ">   
   <!-- Sidebar -->
-  <aside class="col-md-3 nav-sticky dashboard-sidebar">
-      <!-- User Info Section -->
-      <div class="user-info text-center p-3">
-          <img src="{{Auth::user()->image}}" alt="User Image" class="rounded-circle mb-2"
-              style="width: 80px; height: 80px; object-fit: cover" />
-          <h5 class="mb-0 text-info" > {{Auth::user()->username }}</h5>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <div class="list-group profile-sidebar-menu">
-          <a href="./dashboard.html" class="list-group-item list-group-item-action active menu-item" data-section="profile">
-              <i class="fas fa-user"></i> Profile
-          </a>
-          <a href="{{route('frontend.notifications-profile')}}" class="list-group-item list-group-item-action menu-item" data-section="notifications">
-              <i class="fas fa-bell"></i> Notifications
-          </a>
-          <a href="{{route('frontend.setting')}}" class="list-group-item list-group-item-action menu-item" data-section="settings">
-              <i class="fas fa-cog"></i> Settings
-          </a>
-      </div>
-  </aside>
+   @include('frontend.dashboard._sidebar',['profile_active' => 'active'])
 
   <!-- Main Content -->
   <div class="main-content">
@@ -53,12 +33,18 @@
                 </div>
                 <br>
           <!-- Add Post Section -->
-                <section id="add-post" class="add-post-section mb-5">
+                <section id="add-post" class="  mb-5">
                     <h2>Add Post</h2>
                     <div class="post-form p-3 border rounded">
                         <!-- Post Title -->
                         <input name="title" type="text" id="postTitle" value="{{ old('title') }}" class="form-control mb-2" placeholder="Post Title" />
                         @error('title')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+
+                         <!-- smail description   -->
+                         <textarea name="smail_desc"  value="{{ old('smail_desc') }}" class="form-control mb-2" rows="3" placeholder="Smail Description"></textarea>
+                        @error('smail_desc')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
 
@@ -81,14 +67,16 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-
+                        <br>
                         <!-- Enable Comments Checkbox -->
-                        <label class="form-check-label mb-2">
-                            <input name="comment_able"  type="checkbox" class="form-check-input" /> Enable Comments
-                        </label><br>
+                        <div class="form-check mb-2">
+                            <label class="form-check-label mb-2">
+                                <input name="comment_able"  type="checkbox" class="form-check-input" /> <strong> Enable Comments</strong>
+                            </label><br>
+                        </div>
 
                         <!-- Post Button -->
-                        <button type="submit" class="btn btn-primary btn-sm post-btn">Post</button>
+                        <button type="submit" class="btn btn-primary  post-btn">Post</button>
                     </div>
                 </section>
             </form>
@@ -111,8 +99,11 @@
                 </div>
 
                 <!-- Post Content -->
-                <h4 class="post-title"> {{ $post->title }} </h4>
-                <p class="post-content"> {!! $post->desc !!} </p>
+                <h4 class="post-title"> <strong>Post Title:</strong> {{ $post->title }} </h4>
+                <p class="post-content"> <strong>Description:</strong>  {!! $post->desc !!} </p>
+                <p class="post-content"> <strong>Small Description:</strong> {!! $post->smail_desc !!} </p>
+                <p class="post-content"> <strong>Category:</strong> {{ $post->category->name }} </p>
+                 <hr>
 
                 <!-- Carousel -->
                 <div id="newsCarousel{{ $post->id }}" class="carousel slide" data-ride="carousel">
@@ -121,6 +112,7 @@
                             <div class="carousel-item @if($loop->first) active @endif">
                                 <img style="width: 100%;" src="{{ asset($image->path) }}" class="d-block w-100" alt="Slide">
                             </div>
+                           
                         @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#newsCarousel{{ $post->id }}" role="button" data-slide="prev">
@@ -153,7 +145,9 @@
                 <!--  show Comments   -->
                 <div id="display-comments{{$post->id}}" class="comments mt-3" style="display: none;">
             </div>
+            </div>
             <br>
+            
                 @empty
                     <div class="alert alert-info text-center">No posts available</div>
                 @endforelse

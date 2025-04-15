@@ -4,6 +4,11 @@
 Contact Us
 @endsection
 
+@section('breadcrumb')
+@parent
+<li class="breadcrumb-item"><a href="{{route('frontend.post')}}"  >Home</a></li>
+@endsection
+
 @section('body')
 <br>
 <br>

@@ -15,9 +15,9 @@ class HomeController extends Controller
         $oldesNews   = Post::active()->oldest()->take(3)->get();
         $popularNews = Post::active()->withCount('comments')->orderBy('comments_count', 'desc')->take(3)->get();
         
-        $categories  = Category::get();
+        $categories  = Category::active()->has('posts', '>=', 2 )->get();    //if casts posts make show category without Not show category 
         $categoryWithPost = $categories->map(function ($category) {
-            $category->posts = $category->posts()->limit(2)->get();
+            $category->posts = $category->posts()->active()->limit(2)->get();
             return $category;
         });
         return view("frontend.index", compact(['posts', 'mostRead', 'oldesNews', 'popularNews', 'categoryWithPost']));

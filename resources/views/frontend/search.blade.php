@@ -1,5 +1,10 @@
 @extends('layout.frontend.app')
 
+
+@push('cononical')
+    <link rel="canonical" href="{{url()->full()}}">
+@endpush
+
 @section('title')
 Search
 @endsection

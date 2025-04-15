@@ -1,12 +1,21 @@
 @extends('layout.frontend.app')
  
- @section('title')
+ @push('cononical')
+    <link rel="canonical" href="{{url()->full()}}">
+ @endpush
+
+@section('title')
 {{ $mainPosts->title   }}
 @endsection
+
+@section('mate_desc')
+ {{$mainPosts->smail_desc}}
+@endsection
+
 @section('breadcrumb')
 @parent
  <li class="breadcrumb-item"><a> {{ $mainPosts->title}}</a></li>
- @endsection
+@endsection
 
 @section('body')
 <!-- Single News Start-->
@@ -74,15 +83,12 @@
                                             </strong>
                                         </p>
                                     </div>
- 
                                     @endforeach
- 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
- 
                 <!-- Comment Section -->
                 <div class="comment-section">
                     <!-- Comment Input -->

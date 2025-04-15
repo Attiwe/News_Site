@@ -29,7 +29,7 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::get('/category/{slug}', CategoryController::class)->name('category');
     //==================routes show posts=========================== 
     Route::controller(ShowPostsController::class)->group(function(){
-        Route::get('/show-posts/{slug}', 'index')->name('show-posts');
+        Route::get('/show-posts/{slug}', 'index')->name('show-posts')->middleware('checkNotificationReadAs');
         Route::get('/show-more-comments/{slug}', 'showMoreComments')->name('show-more-comments');
         Route::post('/add-comment', 'addComment')->name('add-comment');//ajax
     });
@@ -57,8 +57,12 @@ Route::group( [ 'as' => 'frontend.'], function(){
         Route::put('/setting', 'update')->name('update-setting');
     });
        //==================routes notifications=========================== 
-       Route::controller(NotificationsController::class)->prefix('dashboard/account')->group(function(){
+       Route::controller(NotificationsController::class)->prefix('dashboard/account')->middleware(['auth','verified'])->group(function(){
         Route::get('/notifications', 'index')->name('notifications-profile');
+        Route::get('/read-all', 'readAll')->name('read-all');
+        Route::delete('/delete-notification', 'deleteNotification')->name('delete-notification');
+        Route::delete('/delete-all', 'deleteAll')->name('delete-all');
+
        });
 
     

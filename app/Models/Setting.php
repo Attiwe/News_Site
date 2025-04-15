@@ -19,6 +19,7 @@ class Setting extends Model
         'instagram',
         'country',
         'city',
-        'street'
+        'street',
+        'smail_desc',
     ];
 }

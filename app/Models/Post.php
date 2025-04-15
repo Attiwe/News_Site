@@ -32,7 +32,8 @@ class Post extends Model
         'title',
         'slug',
         'desc',
-        'comment_able'
+        'comment_able',
+        'smail_desc' 
     ];
 
     
