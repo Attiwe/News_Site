@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'checkNotificationReadAs' => CheckNotificationReadAs::class,
         ]);
+     
         
     })
     ->withExceptions(function (Exceptions $exceptions) {

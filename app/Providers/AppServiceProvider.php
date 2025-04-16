@@ -23,12 +23,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-         if(request()->is('/home')){
-            Artisan::call('cache:clear');
-            Artisan::call('config:clear');
-            Artisan::call('view:clear');
-            Artisan::call('route:clear');
-            Artisan::call('optimize:clear');
-         }  
+        //  if(request()->is('/home')){
+        //     Artisan::call('cache:clear');
+        //     Artisan::call('config:clear');
+        //     Artisan::call('view:clear');
+        //     Artisan::call('route:clear');
+        //     Artisan::call('optimize:clear');
+        //  }  
     }
 }
