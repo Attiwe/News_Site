@@ -19,6 +19,12 @@ class User extends Authenticatable  implements MustVerifyEmail
      *
      * @var list<string>
      */
+
+
+     public function scopeActive($query){
+        return $query->where('status','active');
+     }
+
     protected $fillable = [
         'name',
         'email',
@@ -30,7 +36,10 @@ class User extends Authenticatable  implements MustVerifyEmail
         'street',
         'phone',
         'password',
+        'email_verified_at'
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.
