@@ -29,14 +29,12 @@ class ProfileRequest extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                Rule::unique('posts', 'title')->ignore(auth()->user()->id),
-            ],
+             ],
             'desc' => [
                 'required',
                 'string',
-                'max:255',
-                Rule::unique('posts', 'desc')->ignore(auth()->user()->id),
-            ],
+                'max:300',
+             ],
             'category_id' => [
                 'required',
                 Rule::exists('categories', 'id'),
@@ -44,13 +42,13 @@ class ProfileRequest extends FormRequest
             ],
             'comment_able' => [
                 'nullable',
-                Rule::in(['on', 'off']),
+                Rule::in(['on', 'off',1,0]),
             ],
             'images' => [
                 'required',
                 'array',
                 'min:1',
-                'max:3',
+                'max:4',
             ],
             'images.*' => [
                 'required',
@@ -61,7 +59,11 @@ class ProfileRequest extends FormRequest
             'smail_desc' => [ 
                 'required',
                 'string',
-                'max:255',
+                'max:300',
+            ],
+            'status' => [
+                'required',
+                Rule::in(['on', 'off',1,0]),
             ],
         ];
     }

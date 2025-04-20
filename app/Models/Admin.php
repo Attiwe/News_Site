@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Post;
 
 
 class Admin extends Authenticatable  implements MustVerifyEmail 
@@ -19,6 +20,10 @@ class Admin extends Authenticatable  implements MustVerifyEmail
         'password'
     ];
 
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -29,4 +34,5 @@ class Admin extends Authenticatable  implements MustVerifyEmail
         'password' => 'hashed',
     ];
     
+
 }

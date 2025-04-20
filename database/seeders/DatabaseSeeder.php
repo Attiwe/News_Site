@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
          $this->call([
             CategorySeeder::class,
             RelatedNewsSiteSeeder::class,
+            AdminSeeder::class
         ]);
 
         $posts =  Post::factory(20)->create();
@@ -30,5 +31,5 @@ class DatabaseSeeder extends Seeder
        
         Comment::factory()->count(20)->create();
         
-    }
+    }   
 }

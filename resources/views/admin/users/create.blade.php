@@ -8,6 +8,11 @@
             <div class="card">
                 <div class="card-header card-header-primary">
                     <h4 class="card-title">Create User</h4>
+                    <div class="d-flex flex-row-reverse bd-highlight mt-3 mb-3">
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-arrow-left"></i> Back to  
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form action=" {{ route('admin.users.store') }} " method="POST" enctype="multipart/form-data"   >

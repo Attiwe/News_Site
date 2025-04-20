@@ -43,7 +43,7 @@ Home
                         @foreach ($newPost as $post )
                         <div class="col-md-6">
                             <div class="tn-img">
-                                <img style="height: 220px; width: 220px;" src="{{asset($post->images->first()->path)}}" />
+                                <img style="height: 220px; width: 220px;" src="{{asset($post->images->first()->path ?? ' image ')}}" />
                                 <div class="tn-title">
                                     <a href="{{ route('frontend.show-posts', $post->slug)}}" title="{{ $post->title}}">  {{ $post->title }}</a>
                                 </div>

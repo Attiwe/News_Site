@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\Password\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\Password\ResetPasswordController;
 use App\Http\Controllers\Admin\Categories\CategoryController;
+use App\Http\Controllers\Admin\Posts\PostsController;
+ 
 
 // auth admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'  ], function() {
@@ -52,6 +54,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth:admin' 
      Route::resource('categories',CategoryController::class);
      Route::get('categories/status/{id}',[CategoryController::class,'status'])->name('categories.status');
 
+     //======================routes posts==========================
+     Route::resource('posts',PostsController::class);
+     Route::controller(PostsController::class)->group(function() {
+        Route::get('posts/commentable/{id}', 'commentable')->name('posts.commentable');
+        Route::get('posts/status/{id}', 'status')->name('posts.status');
+     });
 
 });
  

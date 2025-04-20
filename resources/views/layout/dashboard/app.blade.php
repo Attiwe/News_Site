@@ -19,7 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href=" {{asset('assets/admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+<!-- Summernote -->
+<link href=" {{asset('assets/vendor/summernotes/summernote-bs4.css')}}" rel="stylesheet" />
+ <!-- File Input -->
+ <link href=" {{asset('assets/vendor/file_input/css/fileinput.min.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
 </head>
 
 <body id="page-top">
@@ -74,6 +78,15 @@
     <script src=" {{asset('assets/admin/js/demo/chart-area-demo.js')}}"></script>
     <script src=" {{asset('assets/admin/js/demo/chart-pie-demo.js')}}"></script>
 
+    <!-- File Input -->
+    <script src=" {{asset('assets/vendor/file_input/js/fileinput.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- Summernote -->
+    <script src=" {{asset('assets/vendor/summernotes/summernote-bs4.js')}}"></script>
+
+    <!--  for custom js used jquery and ajax -->
+    @stack('js') 
 </body>
 
 </html>

@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
    
     public function index()
-    {
+    {  
         try {
             $categeries = Category::withCount('posts') ->when(request()->keyword, function ($query) {
                 $query->where('name', 'like', '%' . request()->keyword . '%')
@@ -85,7 +85,7 @@ class CategoryController extends Controller
         
             $categery->update($request->except('_token'));
     
-             return redirect()->back() ->withInput()->with('success', 'Category updated successfully');
+             return redirect()->back() ->with('success', 'Category updated successfully');
         } catch (\Throwable $th) {
             session()->flash('error', 'Failed to update category: ' . $th->getMessage());
             return redirect()->back();

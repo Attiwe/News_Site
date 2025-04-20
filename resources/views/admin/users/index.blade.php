@@ -10,22 +10,22 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800  ">Users</h1>
         <p class="mb-4 text-secondary"> The users sign up of News Socail </p>
-
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"> List of Users </h6>
+                <div class="d-flex flex-row-reverse bd-highlight mb-3">
+                <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-arrow-left"></i> Back to  
+                        </a>
+             </div>
             </div>
-            
             <!-- filter select Search by -->
             @include('admin.users._filter_selected')
-
-
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered  table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead class="" >
-
                             <tr class="text-dark table-info"  >
                                 <th>#</th>
                                 <th>Name</th>

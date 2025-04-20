@@ -9,6 +9,11 @@
             <div class="card">
                 <div class="card-header card-header-primary">
                     <h4 class="card-title">Create Category</h4>
+                    <div class="d-flex flex-row-reverse bd-highlight mt-3 mb-3">
+                        <a href="{{ route('admin.categories.index') }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-arrow-left"></i> Back to  
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.categories.store') }}" method="POST">
@@ -36,6 +41,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                     
                         </div>
                        
                         <button type="submit" class="btn btn-primary pull-right ">Create</button>

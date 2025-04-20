@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Comment; 
+use App\Models\Admin;
+
 class Post extends Model
 {
     use Sluggable , HasFactory;
@@ -27,12 +29,14 @@ class Post extends Model
 
     protected $fillable = [
         'user_id',
+        'admin_id',
         'number_view',
         'category_id',
         'title',
         'slug',
         'desc',
         'comment_able',
+        'status',
         'smail_desc' 
     ];
 
@@ -40,6 +44,9 @@ class Post extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function admin(){
+        return $this->belongsTo(Admin::class);
     }
     public function category(){
         return $this->belongsTo(Category::class);

@@ -8,6 +8,11 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title">Create User</h4>
+                        <div class="d-flex flex-row-reverse bd-highlight mt-3 mb-3">
+                            <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-arrow-left"></i> Back to  
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
 
@@ -17,14 +22,12 @@
                                     <label class="bmd-label-floating">Name</label>
                                     <input class="form-control" value="{{ $user->name }}" readonly>
                                 </div>
-
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Email</label>
                                     <input class="form-control" value="{{ $user->email }}" readonly>
                                 </div>
-
                             </div>
                         </div>
                         <div class="row">

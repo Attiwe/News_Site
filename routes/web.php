@@ -43,7 +43,7 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::match(['get','post'],'/search',SearchController::class)->name('search');
 
     //==================routes dashboard=========================== 
-    Route::controller(ProfileController::class)->prefix('account')->middleware(['auth:wed','verified'])->group(function(){
+    Route::controller(ProfileController::class)->prefix('account')->middleware(['auth:web','verified'])->group(function(){
         Route::get('/', 'index')->name('dashboard');
         Route::post('/add-post', 'addPost')->name('add-post');
         Route::get('/post/{slug}/edit', 'editPost')->name('edit-post');
@@ -53,17 +53,16 @@ Route::group( [ 'as' => 'frontend.'], function(){
     }); 
     
     //==================routes setting profile=========================== 
-    Route::controller(SettingController::class)->prefix('dashboard/account')->middleware(['auth:wed','verified'])->group(function(){
+    Route::controller(SettingController::class)->prefix('dashboard/account')->middleware(['auth:web','verified'])->group(function(){
         Route::get('/setting', 'index')->name('setting');
         Route::put('/setting', 'update')->name('update-setting');
     });
        //==================routes notifications=========================== 
-       Route::controller(NotificationsController::class)->prefix('dashboard/account')->middleware(['auth:wed','verified'])->group(function(){
+       Route::controller(NotificationsController::class)->prefix('dashboard/account')->middleware(['auth:web','verified'])->group(function(){
         Route::get('/notifications', 'index')->name('notifications-profile');
         Route::get('/read-all', 'readAll')->name('read-all');
         Route::delete('/delete-notification', 'deleteNotification')->name('delete-notification');
         Route::delete('/delete-all', 'deleteAll')->name('delete-all');
-
        });
 
 });    

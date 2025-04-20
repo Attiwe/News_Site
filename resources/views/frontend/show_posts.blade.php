@@ -99,7 +99,7 @@
                         <input name="commit" type="text" placeholder="Add a comment..." id="commentBox" />
                         <input name="post_id" type="hidden" value="{{$mainPosts->id}}" />
                         
-                        <input name="user_id" type="hidden" value=" {{$mainPosts->user->id}}" />
+                        <input name="user_id" type="hidden" value=" {{$mainPosts->user->id ?? $mainPosts->admin->id}}" />
                        
                         <input name="ip_address" type="hidden" value="{{request()->ip()}}" />
                          <button title="Post" type="submit">Comment</button>
