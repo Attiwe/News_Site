@@ -33,7 +33,7 @@
       <div class="col-lg-3 col-md-4">
         <div class="b-logo">
           <a href=" #">
-            <img style="height: 150px; width: 150px;" src="{{ asset('logo/logo.jpg') }}" alt="Logo" />
+            <img style="height: 150px; width: 150px;" src=" {{ asset($getSetting->logo) }}" alt="Logo" />
           </a>
         </div>
       </div>

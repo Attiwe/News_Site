@@ -31,11 +31,10 @@
                                 <th>Name</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Image</th>
-                                <th>Status</th>
                                 <th>Country</th>
                                 <th>City</th>
-                                 <th>Phone</th>
+                                <th>Phone</th>
+                                <th>Status</th>
                                 <th>Opreation</th>
                             </tr>
                         </thead>        
@@ -46,17 +45,16 @@
                                     <td class=" text-primary" > {{ $user->name ?? 'Unknown' }}</td>
                                     <td class=" text-primary" > {{ $user->username ?? 'Unknown' }}</td>
                                     <td class=" text-primary" > {{ $user->email ?? 'Unknown' }}</td>
-                                    <td class=" text-primary   " > <img class="rounded-circle"  src="{{ asset($user->image) ?? 'Unknown' }}" alt="User Image" style="width: 100px; height: 90px;" /></td>
-                                    <td class=" text-primary" >
+                                    <td class=" text-primary" > {{ $user->country ?? 'Unknown' }}</td>
+                                    <td class=" text-primary" > {{ $user->city ?? 'Unknown' }}</td>
+                                     <td class=" text-danger" > {{ $user->phone ?? 'Unknown' }}</td>
+                                     <td class=" text-primary" >
                                         @if($user->status == 'active' )
                                             <span class="badge badge-success">Active</span>
                                         @else
                                             <span class="badge badge-danger">Inactive</span>
                                         @endif
                                     </td>
-                                    <td class=" text-primary" > {{ $user->country ?? 'Unknown' }}</td>
-                                    <td class=" text-primary" > {{ $user->city ?? 'Unknown' }}</td>
-                                     <td class=" text-danger" > {{ $user->phone ?? 'Unknown' }}</td>
                                     <td class=" text-primary" >
                                        
                                     <!-- route status -->
@@ -67,12 +65,16 @@
                                         <i class="fa-solid fa-play"></i>
                                         @endif
                                     </a>
-                                    <!-- route edit -->
-                                    <a href="{{ route('admin.users.show',$user->id) }}" class="btn btn-sm btn-primary"> <i class="fa-solid fa-eye"></i></a>
-                                 <!-- Button trigger modal -->
-                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal{{ $user->id }}">
+                                    
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal{{ $user->id }}">
                                         <i class="fa-solid fa-trash"></i>
-                                    </button>   
+                               </button> 
+                                <!-- Button trigger modal View -->
+                              <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalLong_{{ $user->id }}">
+                              <i class="fa-solid fa-eye"></i>
+                              </button>
+                              @include('admin.users._modal_view')
                                 </td>
                                 </tr>
                                 {{-- Modal delete --}}

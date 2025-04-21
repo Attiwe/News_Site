@@ -24,8 +24,8 @@ class CheakSettingProvider extends ServiceProvider
            return Setting::create([
                 'stie_name' => 'News Social',
                 'email' => 'ebrahim@gmail.com',
-                'favicon' => 'favicon.ico',
-                'logo' =>  asset('logo/logo.jpg'),
+                'favicon' =>  ' ' ,
+                'logo' =>  ' ',
                 'phone' => '+01150629726',
                 'facebook' => 'https://facebook.com/newssocial',
                 'linkendin' => 'https://linkedin.com/company/newssocial',
@@ -42,7 +42,6 @@ class CheakSettingProvider extends ServiceProvider
       
          view()->share([
             'getSetting' => $getSetting,
-            
          ]);
     }
 }

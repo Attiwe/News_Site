@@ -28,7 +28,7 @@ class UserController extends Controller
 
                 ->orderBy(request('search_by', 'id'), request('order_dir', 'desc'))
 
-                ->paginate(request('show', 5));
+                ->paginate(request('show', 8));
 
             return view('admin.users.index', compact('users'));
         } catch (\Exception $e) {
@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function store(AddUserRequest $request)
     {
-        try {
+         try {
             $request->validated();
             $request->merge([
                 'email_verified_at' => $request->email_verified_at == 1 ? now() : null,
@@ -67,25 +67,8 @@ class UserController extends Controller
 
     }
 
-
-    public function show(string $id)
-    {
-        $user = User::findOrFail($id);
-        return view('admin.users.show', compact('user'));
-    }
-
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
+ 
+ 
 
     public function destroy(Request $request)
     {

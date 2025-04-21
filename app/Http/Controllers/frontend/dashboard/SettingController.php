@@ -19,8 +19,9 @@ class SettingController extends Controller
         return view('frontend.dashboard.setting_profile', compact('user'));
     }
 
-    public function update(SetingUserRequest $request)
+    public function update(Request $request)
     {
+       
     try{
      $request->validated();
      $user = User::findorFail(auth()->user()->id);

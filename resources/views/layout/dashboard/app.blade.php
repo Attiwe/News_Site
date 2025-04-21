@@ -11,6 +11,8 @@
 
     <title> {{ config('app.name') }} @yield('title') </title>
 
+ 
+
     <!-- Custom fonts for this template-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -24,6 +26,7 @@
  <!-- File Input -->
  <link href=" {{asset('assets/vendor/file_input/css/fileinput.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+@stack('css')
 </head>
 
 <body id="page-top">

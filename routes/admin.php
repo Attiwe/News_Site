@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\Auth\Password\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\Password\ResetPasswordController;
 use App\Http\Controllers\Admin\Categories\CategoryController;
 use App\Http\Controllers\Admin\Posts\PostsController;
+use App\Http\Controllers\Admin\Setting\SettingController;
+
  
 
 // auth admin
@@ -60,6 +62,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth:admin' 
         Route::get('posts/commentable/{id}', 'commentable')->name('posts.commentable');
         Route::get('posts/status/{id}', 'status')->name('posts.status');
      });
+     
+     //======================routes settings==========================
+    Route::controller(SettingController::class)->group(function() {
+        Route::get('settings', 'index')->name('settings');
+        Route::get('settings/edit', 'edit')->name('settings.edit');
+        Route::put('settings/update', 'update')->name('settings.update');
+      
+    });
 
 });
- 
