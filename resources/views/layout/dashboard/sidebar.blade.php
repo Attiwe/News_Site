@@ -42,6 +42,7 @@
         </div>
     </div>
 </li>
+<hr class="sidebar-divider">
 
 <!-- Nav Item - settings     -->
 <li class="nav-item">
@@ -64,12 +65,8 @@
 <!-- Divider -->
 <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading">
-    Addons
-</div>
-
-<!-- Nav Item - Pages Collapse Menu -->
+ 
+<!-- user-->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
         aria-expanded="true" aria-controls="collapsePages">
@@ -84,6 +81,24 @@
         </div>
     </div>
 </li>
+<hr class="sidebar-divider">
+
+<!-- admin-->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin"
+        aria-expanded="true" aria-controls="admin">
+        <i class="fas fa-fw fa-users"></i>
+        <span> Admins Management </span>
+    </a>
+    <div id="admin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+           
+            <a class="collapse-item" href="{{ route('admin.admins.index') }}"> Admins </a>
+            <a class="collapse-item" href="{{ route('admin.admins.create') }}">Add Admin</a>
+        </div>
+    </div>
+</li>
+<hr class="sidebar-divider">
 
 <!-- Nav Item - categories -->
 <li class="nav-item">
