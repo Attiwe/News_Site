@@ -11,7 +11,7 @@
 
     <title> {{ config('app.name') }} @yield('title') </title>
 
- 
+    @livewireStyles
 
     <!-- Custom fonts for this template-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
@@ -90,6 +90,7 @@
 
     <!--  for custom js used jquery and ajax -->
     @stack('js') 
+    @livewireScripts
 </body>
 
 </html>

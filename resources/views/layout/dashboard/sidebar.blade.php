@@ -1,4 +1,5 @@
   <!-- Sidebar -->
+   @livewireStyles
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
@@ -35,10 +36,10 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Post Management:</h6>
             @can('index_post')
-            <a class="collapse-item" href=" {{route('admin.posts.index')}}">Posts</a>
+            <a class="collapse-item"  wire:navigate href=" {{route('admin.posts.index')}}">Posts</a>
             @endcan
             @can('create_post')
-            <a class="collapse-item" href="{{route('admin.posts.create')}}">Add Post</a>
+            <a class="collapse-item"  wire:navigate href="{{route('admin.posts.create')}}">Add Post</a>
             @endcan
         </div>
     </div>
@@ -60,10 +61,10 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">  Settings:</h6>
             @can('index_setting')
-            <a class="collapse-item" href="  {{route('admin.settings')}}">  Settings</a>
+            <a class="collapse-item" wire:navigate href="  {{route('admin.settings')}}">  Settings</a>
             @endcan
             @can('edit_setting')
-            <a class="collapse-item" href=" {{route('admin.settings.edit')}}">Edit Settings </a>
+            <a class="collapse-item" wire:navigate href=" {{route('admin.settings.edit')}}">Edit Settings </a>
             @endcan
             
         </div>
@@ -83,10 +84,10 @@
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             @can('index_user')
-            <a class="collapse-item" href="{{ route('admin.users.index') }}"> Users </a>
+            <a class="collapse-item" wire:navigate href="{{ route('admin.users.index') }}"> Users </a>
             @endcan
             @can('create_user')
-            <a class="collapse-item" href="{{ route('admin.users.create') }}">Add User</a>
+            <a class="collapse-item" wire:navigate href="{{ route('admin.users.create') }}">Add User</a>
             @endcan
         </div>
     </div>
@@ -96,7 +97,7 @@
 
 <!-- admin-->
  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin"
+    <a class="nav-link collapsed" wire:navigate href="#" data-toggle="collapse" data-target="#admin"
         aria-expanded="true" aria-controls="admin">
         <i class="fas fa-fw fa-users"></i>
         <span> Admins Management </span>
@@ -104,10 +105,10 @@
     <div id="admin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             @can('index_admin')
-            <a class="collapse-item" href="{{ route('admin.admins.index') }}"> Admins </a>
+            <a class="collapse-item" wire:navigate href="{{ route('admin.admins.index') }}"> Admins </a>
             @endcan
             @can('create_admin')
-            <a class="collapse-item" href="{{ route('admin.admins.create') }}">Add Admin</a>
+            <a class="collapse-item" wire:navigate href="{{ route('admin.admins.create') }}">Add Admin</a>
             @endcan
         </div>
     </div>
@@ -117,7 +118,7 @@
 @can('category')
 <!-- Nav Item - categories -->
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.categories.index') }}">
+    <a class="nav-link" wire:navigate href="{{ route('admin.categories.index') }}">
     <i class="fa-solid fa-icons"></i>
         <span>Categories</span></a>
 </li>
@@ -128,7 +129,7 @@
 
 <!-- Authorization-->
  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#authorization"
+    <a class="nav-link collapsed" wire:navigate href="#" data-toggle="collapse" data-target="#authorization"
         aria-expanded="true" aria-controls="authorization">
         <i class="fa-solid fa-pen-ruler"></i>
             <span> Authorization   </span>    
@@ -136,10 +137,10 @@
     <div id="authorization" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             @can('index_authorization')
-            <a class="collapse-item" href="{{ route('admin.authorization.index') }}"> Authorization </a>
+            <a class="collapse-item" wire:navigate href="{{ route('admin.authorization.index') }}"> Authorization </a>
             @endcan
             @can('create_authorization')
-            <a class="collapse-item" href="{{ route('admin.authorization.create') }}">Add Permission</a>
+            <a class="collapse-item" wire:navigate href="{{ route('admin.authorization.create') }}">Add Permission</a>
             @endcan
         </div>
     </div>
@@ -154,14 +155,15 @@
     </a>
     <div id="contact-us" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-             <a class="collapse-item" href="{{ route('admin.contact-us.index') }}"> Contact Us </a>
+             <a class="collapse-item" wire:navigate href="{{ route('admin.contact-us.index') }}"> Contact Us </a>
             
         </div>
     </div>
 </li>
 <hr class="sidebar-divider">
  
-
- 
 </ul>
+@push('js')
+@livewireScripts
+@endpush
 <!-- End of Sidebar -->

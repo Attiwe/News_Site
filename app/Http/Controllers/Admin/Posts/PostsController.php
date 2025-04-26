@@ -51,7 +51,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        return view('admin.posts.create', ['navigate' => true]);
     }
 
     /**
