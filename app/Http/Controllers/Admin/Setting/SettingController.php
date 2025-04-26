@@ -11,9 +11,12 @@ use App\Utils\ImageMangment;
  
 class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware( 'can:index_setting') ->only('index');
+        $this->middleware( 'can:edit_setting') ->only('edit');
+        $this->middleware( 'can:update_setting') ->only('update');
+    }
     public function index()
     {
         return view('admin.setting.index');

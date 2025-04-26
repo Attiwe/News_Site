@@ -12,9 +12,19 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'can:category') ->only(' ');
+        $this->middleware( 'can:index_category') ->only('index');
+        $this->middleware( 'can:edit_category') ->only('update');
+        $this->middleware( 'can:delete_category') ->only('destroy');
+        $this->middleware( 'can:status_category') ->only('status');
+        $this->middleware( 'can:create_category') ->only('create','store'); 
+      }
    
     public function index()
     {  
+
         try {
             $categeries = Category::withCount('posts') ->when(request()->keyword, function ($query) {
                 $query->where('name', 'like', '%' . request()->keyword . '%')

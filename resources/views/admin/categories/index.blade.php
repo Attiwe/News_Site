@@ -29,7 +29,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered  table-hover" id="dataTable" width="100%" cellspacing="0">
-                        <thead class="" >
+                        <thead class="text-center" >
 
                             <tr class="text-dark table-info" >
                                 <th>#</th>
@@ -41,13 +41,13 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody class="text-center" >
                             @forelse($categeries as $categery)
                                <tr>
                                 <td class=" text-primary" > {{ $loop->iteration }}</td>
                                 <td class=" text-primary" > {{ $categery->name ?? 'Unknown' }}</td>
                                 <td class=" text-primary" > {{ $categery->slug ?? 'Unknown' }}</td>
-                                <td class=" text-primary" > {{ $categery->posts_count ?? '0' }}</td>
+                                <td class=" text-primary" > <span class="badge badge-danger"> {{ $categery->posts_count ?? '0' }}</span></td>
                                 <td class=" text-primary" >
                                     @if($categery->status == 1)
                                         <span class="badge badge-success">Active</span>
@@ -64,7 +64,7 @@
                                      <!-- modal edit -->
                                @include('admin.categories._modal_edit')
                                 
-                                <a href=" {{route('admin.categories.status',$categery->id)}} " class="btn btn-sm btn-warning"> 
+                                <a href=" {{route('admin.categories.status',$categery->id)}} " class="btn btn-sm btn-info"> 
                                         @if($categery->status == 1)
                                         <i class="fa-regular fa-circle-stop "></i>
                                         @else

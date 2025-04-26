@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->boolean('status')->default(1);
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

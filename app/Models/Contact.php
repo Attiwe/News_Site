@@ -12,6 +12,7 @@ class Contact extends Model
         'title',
         'body',
         'phone', 
-        'ip_address'
+        'ip_address',
+        'status'
     ];
 }

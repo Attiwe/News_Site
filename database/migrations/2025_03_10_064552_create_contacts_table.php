@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('body');
             $table->string('phone');
             $table->string('ip_address');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

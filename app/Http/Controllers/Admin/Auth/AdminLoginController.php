@@ -24,7 +24,7 @@ class AdminLoginController extends Controller
     {
 
         $request->validate($this->FilterValidateLogin());
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember = true)) {
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password , 'status' => 1],  $request->remember = true)) {
             return redirect()->route('admin.home');
         }
         return redirect()->back()->with('error', 'Invalid Credentials');

@@ -11,14 +11,24 @@ use Illuminate\Support\Facades\Cache;
 use App\Utils\ImageMangment;
 use Illuminate\Support\Facades\Auth;
 
+
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:index_post')->only('index');
+        $this->middleware('can:create_post')->only('create','store');
+        $this->middleware('can:edit_post')->only('edit');
+        $this->middleware('can:delete_post')->only('destroy');
+        $this->middleware('can:status_post')->only('status');
+        $this->middleware('can:commentable_post')->only('commentable');
+        $this->middleware('can:view_post')->only('show');
+ 
+    }
     public function index()
     {
         try {
+            
             $posts = Post::with('user', 'category') ->when(request()->keyword, function ($query) {
                 $query->where('title', 'like', '%' . request()->keyword . '%')
                     ->orWhere('slug', 'like', '%' . request()->keyword . '%')

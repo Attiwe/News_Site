@@ -1,6 +1,7 @@
 @extends('layout.dashboard.app')
 @section('title', 'Create Post')
 @section('body')
+
 <br>
 <div class=" container-fluid">
     <div class="row">

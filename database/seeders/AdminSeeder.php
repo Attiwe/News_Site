@@ -20,9 +20,9 @@ class AdminSeeder extends Seeder
         'name'=>'test',
         'username'=>'test test',
         'email'=>'admin@gmail.com',
-        
-        'password'=>'123'
-
+        'status'=>1,
+        'password'=>'123',
+        'role_id'=>1
         ]);
 
     }

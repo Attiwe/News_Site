@@ -11,6 +11,15 @@ use Str;
 
 class UserController extends Controller
 {
+     public function __construct()
+     {
+        $this->middleware('can:index_user') ->only('index');
+         $this->middleware('can:delete_user') ->only('destroy');
+        $this->middleware('can:status_user') ->only('status');
+        $this->middleware('can:create_user') ->only('create');
+        $this->middleware('can:store_user') ->only('store');
+
+     }
 
     public function index()
     {

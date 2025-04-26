@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\Categories\CategoryController;
 use App\Http\Controllers\Admin\Posts\PostsController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Admin\AdminController;
+use App\Http\Controllers\Authorization\AuthorizationController;
+use App\Http\Controllers\admin\Contact\ContactUsController;
+use App\Http\Controllers\Admin\Profile\ProfileController;
  
 
 // auth admin
@@ -24,22 +27,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'  ], function() {
 
     //======================routes verify password=========================== 
     Route::group(['prefix' => 'password', 'as' => 'password.'],function(){
-        //======================routes forgot verify password=========================== 
+        //======================routes forgot verify password=================== 
         Route::controller(ForgotPasswordController::class)->group(function() {
             Route::get('forget', 'show')->name('forget');
             Route::post('forget/password', 'sendResetLinkEmail')->name('forget.check');
             Route::get('confirm/{email}', 'showResetForm')->name('confirm');
             Route::post('verify', 'verifyOtp')->name('verifyOtp.check');
         });
-        //======================routes reset verify password=========================== 
+        //======================routes reset verify password======================= 
         Route::controller( ResetPasswordController::class)->group(function() {
             Route::get('reset/{email}', 'show')->name('reset');
             Route::post('reset', 'reset')->name('reset.check');
         });
-        
-    });
-    
 
+    }); 
 });
  
 Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth:admin' ], function() {
@@ -73,5 +74,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth:admin' 
     //======================routes admins==========================
     Route::resource('admins',AdminController::class);
     Route::get('admins/status/{id}', [AdminController::class, 'status'])->name('admins.status');
-    
+
+    //======================routes permissions======================
+    Route::resource('authorization',AuthorizationController::class);
+
+    //======================routes contact-us======================
+    Route::resource('contact-us',ContactUsController::class);
+
+    //======================routes profile======================
+    Route::controller(ProfileController::class)->group(function() {
+        Route::get('profile', 'index')->name('profile');
+        Route::put('profile/update', 'update')->name('profile.update');
+    });
+     
 });

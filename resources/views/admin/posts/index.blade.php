@@ -16,9 +16,11 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"> List of Posts </h6>
                 <div class="d-flex flex-row-reverse bd-highlight mb-3">
+                     
                     <a href="{{ route('admin.posts.index') }}" class="btn btn-sm btn-primary">
                         <i class="fas fa-arrow-left"></i> Back to  
                     </a>
+                  
                 </div>
              </div>
             <!-- filter select Search by -->
