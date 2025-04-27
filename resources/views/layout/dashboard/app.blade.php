@@ -30,8 +30,7 @@
 </head>
 
 <body id="page-top">
-
-    <!-- Page Wrapper -->
+ 
     <div id="wrapper">
 
        @include('layout.dashboard.sidebar')
@@ -63,6 +62,7 @@
 
     <!-- Logout Modal-->
     @include('admin._logoutModal')
+ 
 
     <!-- Bootstrap core JavaScript-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -77,9 +77,9 @@
     <!-- Page level plugins -->
     <script src=" {{asset('assets/admin/vendor/chart.js/Chart.min.js')}}"></script>
 
-    <!-- Page level custom scripts -->
+    <!-- Page level custom scripts
     <script src=" {{asset('assets/admin/js/demo/chart-area-demo.js')}}"></script>
-    <script src=" {{asset('assets/admin/js/demo/chart-pie-demo.js')}}"></script>
+    <script src=" {{asset('assets/admin/js/demo/chart-pie-demo.js')}}"></script> -->
 
     <!-- File Input -->
     <script src=" {{asset('assets/vendor/file_input/js/fileinput.min.js')}}"></script>
@@ -87,10 +87,12 @@
 
     <!-- Summernote -->
     <script src=" {{asset('assets/vendor/summernotes/summernote-bs4.js')}}"></script>
-
+ 
     <!--  for custom js used jquery and ajax -->
     @stack('js') 
     @livewireScripts
+
+
 </body>
 
 </html>

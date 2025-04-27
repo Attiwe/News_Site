@@ -43,7 +43,7 @@ Route::group( [ 'as' => 'frontend.'], function(){
     Route::match(['get','post'],'/search',SearchController::class)->name('search');
 
     //==================routes dashboard=========================== 
-    Route::controller(ProfileController::class)->prefix('account')->middleware(['auth:web','verified'])->group(function(){
+    Route::controller(ProfileController::class)->prefix('account')->group(function(){
         Route::get('/', 'index')->name('dashboard');
         Route::post('/add-post', 'addPost')->name('add-post');
         Route::get('/post/{slug}/edit', 'editPost')->name('edit-post');

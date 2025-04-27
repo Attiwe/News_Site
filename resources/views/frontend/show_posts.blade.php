@@ -92,7 +92,7 @@
                 <!-- Comment Section -->
                 <div class="comment-section">
                     <!-- Comment Input -->
-                     @if($mainPosts-> comment_able == true)
+                     @if($mainPosts-> comment_able == true && Auth::guard('web')->check() && Auth::guard('web')->user()->status == 'active')
                      <form  id="commentForm" >
                         @csrf
                      <div class="comment-input">

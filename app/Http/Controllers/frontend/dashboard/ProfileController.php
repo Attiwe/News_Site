@@ -20,6 +20,13 @@ use Str;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:web');
+        $this->middleware('statusUserLogin');
+        $this->middleware('verified');
+    }
+
     public function index()
     {
         $posts = Auth::user()->posts()->with('images')->active()->get();
