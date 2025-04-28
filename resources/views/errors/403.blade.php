@@ -21,7 +21,7 @@
          <h1 class="display-1 text-danger">403</h1>
         <h2 class="mb-4">Forbidden</h2>
         <p class="lead">You don't have permission to access this page.</p>
-        <a href="{{  route('admin.login') }}" class="btn btn-primary mt-3">Go to Homepage</a>
+        <a href="{{  route('login') }}" class="btn btn-primary mt-3">Go to Homepage</a>
     </div>
 </body>
 </html>

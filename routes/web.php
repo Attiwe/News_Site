@@ -25,7 +25,7 @@ Route::controller(VerificationController::class)->prefix('email')->name('verific
 
 //==================routes frontend=========================== 
 Route::group( [ 'as' => 'frontend.'], function(){  
-    Route::get('/home',[HomeController::class,'index'])->name('post');
+    Route::get('/home',[HomeController::class,'index'])->name('home');
     Route::post('/new-subscriber', [NewSubscriberController::class, 'store'])->name('new-subscriber');
     Route::get('/category/{slug}', CategoryController::class)->name('category');
     //==================routes show posts=========================== 

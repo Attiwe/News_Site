@@ -215,5 +215,4 @@ Home
         </div>
     </div>
     <!-- Main News End-->
-
 @endsection
