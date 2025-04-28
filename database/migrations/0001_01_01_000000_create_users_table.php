@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('username')->unique();
+            $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
             $table->string('image')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->string('country')->nullable();

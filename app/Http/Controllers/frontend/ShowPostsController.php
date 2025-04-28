@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Category;
 use App\Notifications\CommentNotification;
+use Illuminate\Support\Facades\Auth;
      
  
 
@@ -43,7 +44,7 @@ class ShowPostsController extends Controller
             'user_id' => ['required','exists:users,id'],
             'ip_address' => ['required','ip'],
         ]);
-
+        
         $comment = Comment::create([
             'commit' => $request->commit,
             'post_id' => $request->post_id,

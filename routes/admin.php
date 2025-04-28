@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\Admin\AdminController;
 use App\Http\Controllers\Authorization\AuthorizationController;
 use App\Http\Controllers\admin\Contact\ContactUsController;
 use App\Http\Controllers\Admin\Profile\ProfileController;
+use App\Http\Controllers\Admin\Home\HomeController;
+use App\Http\Controllers\Admin\GenralSerchController;
  
 
 // auth admin
@@ -45,9 +47,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'  ], function() {
  
 Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth:admin' ], function() {
     
-     Route::get('home',function(){
-        return view('admin.index');
-     })->name('home');
+    //======================routes home===============================
+     Route::controller(HomeController::class)->group(function(){
+        Route::get('/home', 'index')->name('index.home');
+     });
+
+     //**************************routes search************************** */
+     Route::get('search', [GenralSerchController::class, '__invoke'])->name('search');
 
      //======================routes Users===============================
      Route::resource('users',UserController::class);
