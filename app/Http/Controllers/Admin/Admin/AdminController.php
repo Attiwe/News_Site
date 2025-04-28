@@ -80,10 +80,13 @@ class AdminController extends Controller
      */
     public function update(AdminRequest $request )
     { 
+        // return $request->all();
          try {
             $request->validated();
             $admin = Admin::findOrFail($request->id);
-            $admin->update($request->all());
+
+           $request->password ? $admin->update($request->all()) : $admin->update($request->except('password'));
+
             session()->flash('success', 'Admin updated successfully');
             return redirect()->route('admin.admins.index');
         } catch (\Exception $e) {

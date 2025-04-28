@@ -21,14 +21,14 @@ class AdminRequest extends FormRequest
      */
     public function rules(): array
     {
-        $admin_id = $this->route('admin');   
+        $admin_id = $this->route('admin');  
+        
         return [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:admins,email,' . $admin_id],
             'status' => ['required', 'in:0,1'],
-            'password' => ['required', 'min:8'],
-            'role_id' => ['nullable'],
+            'password'=> in_array($this->method(),['PUT','PATCH']) ?  ['nullable'] : ['required','string','min:8'],
         ];
     }
     

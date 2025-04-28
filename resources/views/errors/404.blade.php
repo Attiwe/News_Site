@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <h2 class="card-title">Not Found</h2>
                         <p class="card-text">The page you are looking for does not exist.</p>
-                        <a href="{{  route('admin.login') }}" class="btn btn-primary">Go to Homepage</a>
+                        <a href="{{  route('login') }}" class="btn btn-primary">Go to Homepage</a>
                     </div>
                 </div>
             </div>

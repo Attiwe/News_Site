@@ -7,14 +7,22 @@
 </button>
 
 <!-- Topbar Search -->
-<form
-    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+<form  action="{{route('admin.search')}}" method="post" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    @csrf
+    @method('get')
     <div class="input-group">
-        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+        <input type="text" class="form-control bg-light border-0 small  " required name="keyword" placeholder="Search for..."
             aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-                <i class="fas fa-search fa-sm"></i>
+            <select required class="form-control bg-light border-0 small ml-2" name="option" id="">
+                <option  selected disabled >selected option</option>
+                <option value="users">Users</option>
+                <option value="posts">Posts</option>
+                <option value="categories">Categories</option>
+             </select>
+
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm ml-3"></i>
             </button>
         </div>
     </div>
