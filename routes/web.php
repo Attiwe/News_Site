@@ -13,7 +13,6 @@ use App\Http\Controllers\frontend\dashboard\ProfileController;
 use App\Http\Controllers\frontend\dashboard\SettingController;
 use App\Http\Controllers\frontend\dashboard\NotificationsController;
 use App\Http\Controllers\frontend\Socialite\SocialiteGoogleController;
-use App\Http\Controllers\frontend\Socialite\SocialiteController;
 use App\Http\Controllers\frontend\Socialite\SocialiteFaceBookController;
 
 
@@ -73,7 +72,7 @@ Route::group(['as' => 'frontend.'], function () {
 });
 
 //==================routes Socialite Google===========================
-Route::controller(SocialiteController::class)->prefix('auth')->group(function () {
+Route::controller(SocialiteGoogleController::class)->prefix('auth')->group(function () {
     Route::get('/redirect', 'redirectToGoogle')->name('google.login');
     Route::get('/callback', 'handleGoogleCallback')->name('google.callback');
 });
