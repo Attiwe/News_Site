@@ -85,13 +85,13 @@
                             <div class="text-center">
                                 <p class="mb-3 text-primary">Continue with:</p>
                                 <div class="d-flex justify-content-center gap-3">
-                                    <a href="#" class="btn btn-outline-primary rounded-circle">
+                                    <a href="#" class="btn btn-outline-purple rounded-circle">
                                         <i class="fab fa-google"></i>
                                     </a>
-                                    <a href="#" class="btn btn-outline-primary rounded-circle">
+                                    <a href="#" class="btn btn-outline-purple rounded-circle">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
-                                    <a href="#" class="btn btn-outline-primary rounded-circle">
+                                    <a href="#" class="btn btn-outline-purple rounded-circle">
                                         <i class="fab fa-twitter"></i>
                                     </a>
                                 </div>

@@ -69,7 +69,7 @@
 
       <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav mr-auto">
-          <a href="{{route('frontend.post')}}" class="nav-item nav-link active">Home</a>
+          <a href=" {{ route("frontend.home") }}" class="nav-item nav-link active">Home</a>
           <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Categories</a>
             <div class="dropdown-menu">
