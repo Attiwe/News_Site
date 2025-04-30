@@ -84,16 +84,14 @@
                             <!-- Social Login -->
                             <div class="text-center">
                                 <p class="mb-3 text-primary">Continue with:</p>
-                                <div class="d-flex justify-content-center gap-3">
-                                    <a href="#" class="btn btn-outline-purple rounded-circle">
+                                <div class="d-flex justify-content-center gap-3"> 
+                                      <a href="{{ route('google.login') }}" class="btn btn-outline-primary rounded-circle">
                                         <i class="fab fa-google"></i>
                                     </a>
-                                    <a href="#" class="btn btn-outline-purple rounded-circle">
+                                    <a href=" {{route('facebook.login' )}}" class="btn btn-outline-primary rounded-circle">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
-                                    <a href="#" class="btn btn-outline-purple rounded-circle">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
+                                   
                                 </div>
                             </div>
                         </form>

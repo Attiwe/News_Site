@@ -13,8 +13,7 @@ use App\Http\Controllers\frontend\dashboard\ProfileController;
 use App\Http\Controllers\frontend\dashboard\SettingController;
 use App\Http\Controllers\frontend\dashboard\NotificationsController;
 use App\Http\Controllers\frontend\Socialite\SocialiteGoogleController;
-use App\Http\Controllers\frontend\Socialite\SocialiteController;
-use App\Http\Controllers\frontend\Socialite\SocialiteFaceBookController;
+ use App\Http\Controllers\frontend\Socialite\SocialiteFaceBookController;
 
 
 
