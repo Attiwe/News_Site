@@ -32,9 +32,10 @@ class ProfileController extends Controller
         $posts = Auth::user()->posts()->with('images')->active()->get();
         return view('frontend.dashboard.profile', compact('posts'));
     }
+
     public function addPost(ProfileRequest $request)
     {
-        // return $request;
+
         $data = $request->validated();
         $data['smail_desc'] = $request->smail_desc;
         $data['comment_able'] = $request->comment_able == 'on' ? 1 : 0;
@@ -49,7 +50,7 @@ class ProfileController extends Controller
             DB::commit();
             Cache::forget('last_posts');
             // Cache::forget('popular_posts');
-
+            
             session()->flash('success', 'Post added successfully');
             return redirect()->back();
 

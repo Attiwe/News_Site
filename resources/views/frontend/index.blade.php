@@ -14,7 +14,7 @@ Home
 
 @section('breadcrumb')
 @parent
-<li class="breadcrumb-item"><a href="{{route('frontend.post')}}">Home</a></li>
+<li class="breadcrumb-item"><a href="{{route('frontend.home')}}">Home</a></li>
 @endsection
 
 @section('body')

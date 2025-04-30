@@ -28,7 +28,7 @@
             <section id="profile" class="content-section active">
                 <h2>{{Auth::user()->name}}</h2>
                 <div class="user-profile mb-3">
-                    <img name="image" src="{{Auth::user()->image}}" alt="User Image" class="profile-img rounded-circle" style="width: 100px; height: 100px;" />
+                    <img name="image" src=" {{ asset(Auth::user()->image) }}" alt="User Image" class="profile-img rounded-circle" style="width: 100px; height: 100px;" />
                     <span class="username"> {{Auth::user()->name}}</span>
                 </div>
                 <br>
@@ -91,7 +91,7 @@
             <div class="post-item mb-4 p-3 border rounded">
                 <!-- Post Header -->
                 <div class="post-header d-flex align-items-center mb-2">
-                    <img title="{{ Auth::user()->name }}" src="{{ Auth::user()->image }}" alt="User Image" class="rounded-circle" style="width: 50px; height: 50px;" />
+                    <img title="{{ Auth::user()->name }}" src="{{ asset(Auth::user()->image) }}" alt="User Image" class="rounded-circle" style="width: 50px; height: 50px;" />
                     <div class="ms-3">
                         <h5 class="mb-0"> {{ Auth::user()->username }} </h5>
                         <small class="text-muted"> {{ Auth::user()->created_at->diffForHumans() }} </small>
@@ -111,8 +111,7 @@
                         @foreach ($post->images as $image)
                             <div class="carousel-item @if($loop->first) active @endif">
                                 <img style="width: 100%;" src="{{ asset($image->path) }}" class="d-block w-100" alt="Slide">
-                            </div>
-                           
+                            </div>     
                         @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#newsCarousel{{ $post->id }}" role="button" data-slide="prev">
