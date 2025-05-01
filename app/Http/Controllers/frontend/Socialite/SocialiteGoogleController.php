@@ -20,10 +20,12 @@ class SocialiteGoogleController extends Controller
 
     public function handleGoogleCallback(){
 
-        try{
+    try{
         $user = Socialite::driver('google')->stateless()->user();
      
-        $user_database =  User::firstOrCreate(
+       
+
+        $user_database =  User::updateOrCreate(
         [ 'email' => $user->email,
         'google_id' => $user->id,
         ],
@@ -34,7 +36,7 @@ class SocialiteGoogleController extends Controller
             'image' => $user->avatar,
             'username' => Str::slug($user->name) . Str::random(4),
             'google_id' => $user->id,
-            'status' => 'active',
+            'status' => 'active', 
             'country' => 'undefined',
             'city' => 'undefined',
             'street' => 'undefined',
@@ -46,7 +48,7 @@ class SocialiteGoogleController extends Controller
     return redirect()->route('frontend.dashboard');
     }catch(Exception $e){
         
-        return redirect()->route('login')->with('error', $e->getMessage());
+        return redirect()->route('login');
     }
 
 }

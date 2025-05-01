@@ -49,7 +49,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth:admin' 
     
     //======================routes home===============================
      Route::controller(HomeController::class)->group(function(){
-        Route::get('/home', 'index')->name('index.home');
+        Route::get('/home', 'index')->name('home');
      });
 
      //**************************routes search************************** */

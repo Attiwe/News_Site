@@ -61,10 +61,7 @@ class ProfileRequest extends FormRequest
                 'string',
                 'max:300',
             ],
-            'status' => [
-                'required',
-                Rule::in(['on', 'off',1,0]),
-            ],
+             
         ];
     }
     

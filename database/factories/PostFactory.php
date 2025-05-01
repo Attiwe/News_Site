@@ -25,6 +25,7 @@ class PostFactory extends Factory
             'desc' => fake()->paragraph(5),
             'number_view' =>  rand(0, 100),
             'smail_desc' => fake()->sentence(3),
+            'status' => fake()->boolean(),
             'comment_able' => fake()->boolean(),
         ];
     }

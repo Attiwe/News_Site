@@ -15,7 +15,7 @@
 <!-- Nav Item - Dashboard -->
  @can('home')
  <li class="nav-item active">
-    <a class="nav-link"  href=" {{route('admin.index.home')}}">
+    <a class="nav-link"  href=" {{route('admin.home')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Home</span></a>
 </li>

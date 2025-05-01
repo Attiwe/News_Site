@@ -22,10 +22,7 @@ class Post extends Model
             ]
         ];
     }
-
-    public function scopeActive($query){
-        return $query->where('status',1);
-    }
+ 
 
     protected $fillable = [
         'user_id',
@@ -59,4 +56,34 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+
+    
+    public function scopeActive($query){
+        return $query->where('status',1);
+    }
+
+    public function scopeActiveUser($q)
+    {
+        return $q->where(function($q){
+             $q->whereHas('user',function($user){
+                $user->whereStatus('active');
+             });
+        })->Orwhere('user_id',null);
+    }
+    
+    // public function scopeActiveUser($query){
+
+    //     return  $query->where(function ($query){
+    //         $query->whereHas('user',function ($query){
+    //             $query->where('status','active');
+    //         }) ;
+    //     })->Orwhere('user_id',null);
+    // }
+    public function scopeActiveCategory($query){
+        return $query->whereHas('category',function ($query){
+            $query->whereStatus(1);
+        });
+    }
+
 }
