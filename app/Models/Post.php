@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\Comment; 
 use App\Models\Admin;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -58,7 +59,7 @@ class Post extends Model
     }
 
 
-    
+ //===============================Scopes====================    
     public function scopeActive($query){
         return $query->where('status',1);
     }
@@ -72,18 +73,26 @@ class Post extends Model
         })->Orwhere('user_id',null);
     }
     
-    // public function scopeActiveUser($query){
-
-    //     return  $query->where(function ($query){
-    //         $query->whereHas('user',function ($query){
-    //             $query->where('status','active');
-    //         }) ;
-    //     })->Orwhere('user_id',null);
-    // }
     public function scopeActiveCategory($query){
         return $query->whereHas('category',function ($query){
             $query->whereStatus(1);
         });
+    }
+    //===============================End Scopes====================
+
+    //===============================Attributes Accessors====================
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return Carbon::parse($value)->format('Y-m-d H:i:s');
+    // }
+    //===============================End Attributes Accessors====================
+    
+    
+    public function status(){
+        return $this->status == 1 ? 'Active' : 'Inactive';
+    }
+   static public function commentAble(){
+        return  'comment_able' == 1 ? 'Active' : 'Inactive';
     }
 
 }

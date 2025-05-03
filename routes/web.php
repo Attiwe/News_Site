@@ -19,6 +19,7 @@ use App\Http\Controllers\frontend\Socialite\SocialiteFaceBookController;
 
 
 
+
 Auth::routes();
 //==================routes verification=========================== 
 Route::controller(VerificationController::class)->prefix('email')->name('verification.')->group(function () {
@@ -43,8 +44,11 @@ Route::group(['as' => 'frontend.'], function () {
         Route::get('/contact-us', 'index')->name('contact-us');
         Route::post('/contact-us', 'store')->name('sing-in');
     });
+    //============================ End routes contact-us ============================
+    
     //==================routes search=========================== 
     Route::match(['get', 'post'], '/search', SearchController::class)->name('search');
+    //============================ End routes search ============================
 
     //==================routes dashboard=========================== 
     Route::controller(ProfileController::class)->prefix('account')->group(function () {
@@ -55,12 +59,16 @@ Route::group(['as' => 'frontend.'], function () {
         Route::get('/show-more-comments/{id}', 'showMoreComments')->name('show-more-comments-dashbord');//ajax
         Route::delete('/delete-post/{id}', 'deletePost')->name('delete-post');
     });
+    //============================ End routes dashboard ============================
 
     //==================routes setting profile=========================== 
     Route::controller(SettingController::class)->prefix('dashboard/account')->middleware(['auth:web', 'verified'])->group(function () {
         Route::get('/setting', 'index')->name('setting');
         Route::put('/setting', 'update')->name('update-setting');
-    });
+    });  
+    //============================ End routes setting profile ============================
+     
+
     //==================routes notifications=========================== 
     Route::controller(NotificationsController::class)->prefix('dashboard/account')->middleware(['auth:web', 'verified'])->group(function () {
         Route::get('/notifications', 'index')->name('notifications-profile');
@@ -68,6 +76,7 @@ Route::group(['as' => 'frontend.'], function () {
         Route::delete('/delete-notification', 'deleteNotification')->name('delete-notification');
         Route::delete('/delete-all', 'deleteAll')->name('delete-all');
     });
+    //============================ End routes notifications ============================
 
 });
 
@@ -83,8 +92,7 @@ Route::controller(SocialiteFaceBookController::class)->prefix('auth/facebook')->
     Route::get('/redirect', 'redirectToFacebook')->name('facebook.login');
     Route::get('/callback', 'handleFacebookCallback')->name('facebook.callback');
 });
-
-
+ 
 require __DIR__ . '/admin.php';
 
 

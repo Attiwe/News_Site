@@ -25,6 +25,9 @@ class User extends Authenticatable  implements MustVerifyEmail
         return $query->where('status','active');
      }
 
+       
+
+
     protected $fillable = [
         'name',
         'email',

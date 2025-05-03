@@ -65,9 +65,14 @@
             @can('edit_setting')
             <a class="collapse-item" wire:navigate href=" {{route('admin.settings.edit')}}">Edit Settings </a>
             @endcan
+            @can('index_setting')
+            <a class="collapse-item" wire:navigate href="  {{route('admin.related-news-sites.index')}}">  Related News Site</a>
+            @endcan
             
         </div>
     </div>
+
+    
 </li>
 <hr class="sidebar-divider">
  
