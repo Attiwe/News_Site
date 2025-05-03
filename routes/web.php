@@ -19,6 +19,7 @@ use App\Http\Controllers\frontend\Socialite\SocialiteFaceBookController;
 
 
 
+
 Auth::routes();
 //==================routes verification=========================== 
 Route::controller(VerificationController::class)->prefix('email')->name('verification.')->group(function () {
