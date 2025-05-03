@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\Contact\ContactUsController;
 use App\Http\Controllers\Admin\Profile\ProfileController;
 use App\Http\Controllers\Admin\Home\HomeController;
 use App\Http\Controllers\Admin\GenralSerchController;
+use App\Http\Controllers\Admin\Setting\RelatedNewsSiteController;
  
 
 // auth admin
@@ -49,7 +50,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth:admin' 
     
     //======================routes home===============================
      Route::controller(HomeController::class)->group(function(){
-        Route::get('/home', 'index')->name('index.home');
+        Route::get('/home', 'index')->name('home');
      });
 
      //**************************routes search************************** */
@@ -76,6 +77,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth:admin' 
         Route::get('settings/edit', 'edit')->name('settings.edit');
         Route::put('settings/update', 'update')->name('settings.update');
     });
+
+    //==================routes setting Related News Site=========================== 
+    Route::resource('related-news-sites',RelatedNewsSiteController::class);
+    //============================ End routes setting Related News Site ============================
 
     //======================routes admins==========================
     Route::resource('admins',AdminController::class);

@@ -15,7 +15,7 @@
 <!-- Nav Item - Dashboard -->
  @can('home')
  <li class="nav-item active">
-    <a class="nav-link"  href=" {{route('admin.index.home')}}">
+    <a class="nav-link"  href=" {{route('admin.home')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Home</span></a>
 </li>
@@ -65,9 +65,14 @@
             @can('edit_setting')
             <a class="collapse-item" wire:navigate href=" {{route('admin.settings.edit')}}">Edit Settings </a>
             @endcan
+            @can('index_setting')
+            <a class="collapse-item" wire:navigate href="  {{route('admin.related-news-sites.index')}}">  Related News Site</a>
+            @endcan
             
         </div>
     </div>
+
+    
 </li>
 <hr class="sidebar-divider">
  

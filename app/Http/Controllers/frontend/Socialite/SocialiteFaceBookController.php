@@ -22,14 +22,14 @@ class SocialiteFaceBookController extends Controller
         try{
         $user = Socialite::driver('facebook')->stateless()->user();
      
-        $user_database =  User::firstOrCreate(
+        $user_database =  User::updateOrCreate(
         [ 'email' => $user->email,
         'facebook_id' => $user->id,
         ],
 
         [
             'name' => $user->name, 
-            'email' => $user->email, 
+            'email' => $user->email,    
             'image' => $user->avatar,
             'username' => Str::slug($user->name) . Str::random(4),
             'facebook_id' => $user->id,
