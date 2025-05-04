@@ -14,14 +14,10 @@ use App\Http\Controllers\frontend\dashboard\SettingController;
 use App\Http\Controllers\frontend\dashboard\NotificationsController;
 use App\Http\Controllers\frontend\Socialite\SocialiteGoogleController;
 use App\Http\Controllers\frontend\Socialite\SocialiteFaceBookController;
-
-
-
-
-
+ 
 
 Auth::routes();
-//==================routes verification=========================== 
+//====================routes verification======================
 Route::controller(VerificationController::class)->prefix('email')->name('verification.')->group(function () {
     Route::get('/verify', 'show')->name('notice');
     Route::get('/verify/{id}/{hash}', 'verify')->name('verify');
@@ -29,11 +25,18 @@ Route::controller(VerificationController::class)->prefix('email')->name('verific
 });
 
 //==================routes frontend=========================== 
-Route::group(['as' => 'frontend.'], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::group( [ 'as' => 'frontend.'], function(){  
+
+    //==================routes home=========================== 
+    Route::get('/home',[HomeController::class,'index'])->name('home');
+
+    //================== routes new-subscriber=========================== 
     Route::post('/new-subscriber', [NewSubscriberController::class, 'store'])->name('new-subscriber');
+
+    //================== routes category=========================== 
     Route::get('/category/{slug}', CategoryController::class)->name('category');
-    //==================routes show posts=========================== 
+
+    //================== routes show posts=========================== 
     Route::controller(ShowPostsController::class)->group(function () {
         Route::get('/show-posts/{slug}', 'index')->name('show-posts')->middleware('checkNotificationReadAs');
         Route::get('/show-more-comments/{slug}', 'showMoreComments')->name('show-more-comments');
@@ -46,11 +49,11 @@ Route::group(['as' => 'frontend.'], function () {
     });
     //============================ End routes contact-us ============================
     
-    //==================routes search=========================== 
+    //================== routes search ============================ 
     Route::match(['get', 'post'], '/search', SearchController::class)->name('search');
     //============================ End routes search ============================
 
-    //==================routes dashboard=========================== 
+    //================== routes dashboard ============================ 
     Route::controller(ProfileController::class)->prefix('account')->group(function () {
         Route::get('/', 'index')->name('dashboard');
         Route::post('/add-post', 'addPost')->name('add-post');
@@ -66,9 +69,8 @@ Route::group(['as' => 'frontend.'], function () {
         Route::get('/setting', 'index')->name('setting');
         Route::put('/setting', 'update')->name('update-setting');
     });  
-    //============================ End routes setting profile ============================
+    //============================ End routes setting profile ===========================
      
-
     //==================routes notifications=========================== 
     Route::controller(NotificationsController::class)->prefix('dashboard/account')->middleware(['auth:web', 'verified'])->group(function () {
         Route::get('/notifications', 'index')->name('notifications-profile');
@@ -77,15 +79,13 @@ Route::group(['as' => 'frontend.'], function () {
         Route::delete('/delete-all', 'deleteAll')->name('delete-all');
     });
     //============================ End routes notifications ============================
-
 });
 
-//==================routes Socialite Google===========================
+//================== routes Socialite Google ============================
 Route::controller(SocialiteGoogleController::class)->prefix('auth')->group(function () {
     Route::get('/redirect', 'redirectToGoogle')->name('google.login');
     Route::get('/callback', 'handleGoogleCallback')->name('google.callback');
 });
-
 
 //==================routes Socialite facebook===========================
 Route::controller(SocialiteFaceBookController::class)->prefix('auth/facebook')->group(function () {
@@ -94,7 +94,5 @@ Route::controller(SocialiteFaceBookController::class)->prefix('auth/facebook')->
 });
  
 require __DIR__ . '/admin.php';
-
-
 
 
