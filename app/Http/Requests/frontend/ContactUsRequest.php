@@ -28,5 +28,6 @@ class ContactUsRequest extends FormRequest
             'title' => ['required','string','max:100'],
             'body' => ['required','string','max:200'],
         ];
+     
     }
 }
