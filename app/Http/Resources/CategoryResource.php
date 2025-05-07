@@ -15,6 +15,7 @@ class CategoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id_category' => $this->id,
             'name_category' => $this->name,
             'slug_category' => $this->slug,
             'date_category'=>$this->created_at->format('Y-m-d'),

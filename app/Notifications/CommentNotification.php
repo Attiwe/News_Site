@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Notifiable;
 
 
+
 class CommentNotification extends Notification
 {
     use Queueable;

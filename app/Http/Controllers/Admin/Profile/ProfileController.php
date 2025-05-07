@@ -24,7 +24,7 @@ class ProfileController extends Controller
           session()->flash('success', 'Profile updated successfully');
           return redirect()->back();
         }
-        warning()->flash('error', 'Date  is incorrect ');
+        session()->flash('error', 'Password is incorrect');
         return redirect()->back();
          
 

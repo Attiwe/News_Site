@@ -21,23 +21,21 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
-       
-    try{
-     $request->validated();
-     $user = User::findorFail(auth()->user()->id);
-     $user->update($request->except(['image', '_token', '_method']));
-   
-     // upload image
-     ImageMangment::uploadUserImage($request, $user);
-     
-     session()->flash('success', 'Profile updated successfully');
-     return redirect()->back();
+
+        try {
+            $request->validated();
+            $user = User::findorFail(auth()->user()->id);
+            $user->update($request->except(['image', '_token', '_method']));
+
+            // upload image
+            ImageMangment::uploadUserImage($request, $user);
+
+            session()->flash('success', 'Profile updated successfully');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed to update profile: ' . $e->getMessage());
+            return redirect()->back();
+        }
     }
-    catch (\Exception $e) {
-        session()->flash('error', 'Failed to update profile: ' . $e->getMessage());
-        return redirect()->back()-> withInput();
-    }
-}
 
 }
- 

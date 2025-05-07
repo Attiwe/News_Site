@@ -50,7 +50,7 @@ class ImageMangment
     }
 
 
-    public static function updateLoade(Request $request, $post){
+    public static function updateLoade(Request $request, $post){   // find image delet and after add  images
         if ($request->hasFile('images')) {
             foreach ($post->images as $image) {
                 self::deleteFile($image->path);

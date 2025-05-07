@@ -15,6 +15,7 @@ class PostResource extends JsonResource
     public function toArray(Request $request): array
     {
         $data= [
+            'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->desc,
@@ -29,7 +30,7 @@ class PostResource extends JsonResource
              'comments_posts'=> new CommentCollection($this->whenLoaded('comments')),
 
          ];
-        if($request->is('api/posts/show/*')){
+        if($request->is('api/posts/show/*')||$request->is('api/account/posts/create_posts') ){
             $data['smail_description'] = $this->smail_desc;
             $data['comment_enable'] = self::commentAble();
             $data['number_view'] = $this->number_view;

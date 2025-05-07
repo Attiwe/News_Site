@@ -27,7 +27,6 @@ class SetingUserRequest extends FormRequest
             'email' => ['required','email','max:255',Rule::unique('users','email')->ignore(auth()->user()->id)],
             'username' => ['required','string','max:255',Rule::unique('users','username')->ignore(auth()->user()->id)],
             'image' => ['nullable','image','mimes:jpeg,png,jpg,gif,svg|max:2048'],
-            'password' => ['required','string','min:8'],
-        ];
+         ];
     }
 }

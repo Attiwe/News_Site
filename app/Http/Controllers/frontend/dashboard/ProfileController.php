@@ -37,7 +37,7 @@ class ProfileController extends Controller
     {
 
         $data = $request->validated();
-        $data['smail_desc'] = $request->smail_desc;
+         $data['smail_desc'] = $request->smail_desc;
         $data['comment_able'] = $request->comment_able == 'on' ? 1 : 0;
         $data['user_id'] = Auth::user()->id;
         try {
