@@ -10,7 +10,11 @@
         "cviebrock/eloquent-sluggable": "^12.0",
         "ichtrojan/laravel-otp": "^2.0",
         "laravel/framework": "^12.0",
+<<<<<<< HEAD
         "laravel/sanctum": "^4.0",
+=======
+        "laravel/sanctum": "^4.1",
+>>>>>>> api
         "laravel/socialite": "^5.20",
         "laravel/tinker": "^2.10.1",
         "laravel/ui": "^4.6",

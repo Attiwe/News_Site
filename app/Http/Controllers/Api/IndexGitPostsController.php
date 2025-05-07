@@ -14,16 +14,21 @@ use App\Http\Resources\CategoryCollection;
 class IndexGitPostsController extends Controller
 {
     public function getPosts()
-    {
-        
-        $query = Post::query()->with(['user', 'category','admin','images'])->active()->activeUser()->activeCategory();
+  
+    {       
+         $query = Post::query()->with(['user', 'category','admin','images'])->active()->activeUser()->activeCategory();
  
+        $request =  request()->query('keyword');
+        if(strip_tags($request)){
+            $query->where('title', 'LIKE', '%' . $request . '%');
+        }
+  
         $posts_all       = $this->postsAll($query);
         $posts_last      = $this->postsLast($query);
         $posts_oldes     = $this->postsOldes($query);
         $posts_popular   = $this->postsPopular($query);
         $posts_most_read = $this->postsMostRead($query);
-
+ 
         $posts_with_category = $this->postsWithCategory($query);
 
         $data = [
@@ -99,12 +104,16 @@ class IndexGitPostsController extends Controller
 
     public function showPost(Request $request)
     {
-        $show_post = Post::with('user','admin','images','category')->where('slug',$request->slug)->first();
-        if(!$show_post){
+         $show_post = Post::with('user','admin','images','category')->where('slug',$request->slug)->first();
+         $show_post = Post::with(['user','admin','images','category', 'comments' ])
+        ->where('slug',$request->slug)
+        ->first();
+         if(!$show_post){
            return apiResponse(404, 'the post not found');
         }
         return   apiResponse(200, 'the post show successfully', PostResource::make($show_post));
     }
-    
+     
 
+ 
 }

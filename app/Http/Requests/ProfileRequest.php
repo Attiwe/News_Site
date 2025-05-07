@@ -20,29 +20,29 @@ class ProfileRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
- 
+
 
     public function rules(): array
-    { 
-        return [
+    {
+         $data =  [
             'title' => [
                 'required',
                 'string',
                 'max:100',
-             ],
+            ],
             'desc' => [
                 'required',
                 'string',
                 'max:300',
-             ],
+            ],
             'category_id' => [
                 'required',
                 Rule::exists('categories', 'id'),
-              
+
             ],
             'comment_able' => [
                 'nullable',
-                Rule::in(['on', 'off',1,0]),
+                Rule::in(['on', 'off', 1, 0]),
             ],
             'images' => [
                 'required',
@@ -54,16 +54,29 @@ class ProfileRequest extends FormRequest
                 'required',
                 'image',
                 'mimes:jpeg,png,jpg,gif,svg',
-                'max:3072',  
+                'max:3072',
             ],
-            'smail_desc' => [ 
+            'smail_desc' => [
                 'required',
                 'string',
                 'max:300',
             ],
+<<<<<<< HEAD
              
+=======
+
+>>>>>>> api
         ];
+        if($this->isMethod('put')) {
+            $data['images'] = [
+                'nullable',
+                'array',
+                'min:1',
+                'max:4',
+            ];
+        }
+        return $data;
     }
-    
+
 }
 

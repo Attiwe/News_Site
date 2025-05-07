@@ -2,7 +2,7 @@
 # Introduction
 
 Thanks for subscribing to our newsletter.
-<x-mail::button :url="url('/')">
+<x-mail::button :url="url('home')">
 Button Text
 </x-mail::button>
 
