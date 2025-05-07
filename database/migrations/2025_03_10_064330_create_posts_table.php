@@ -21,7 +21,7 @@ return new class extends Migration
             $table->longText('desc');
             $table->boolean('status')->default(1);
             $table->bigInteger('number_view')->default(0);
-            $table->boolean('comment_able')->default(0);
+            $table->boolean('comment_able')->default(1);
             $table->string('smail_desc');//special sorting SEO
             $table->timestamps();
         });

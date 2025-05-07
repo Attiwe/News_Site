@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Account\CommentController;
+use App\Http\Controllers\Api\Account\NotificationsController;
 use App\Http\Controllers\Api\Account\PostsController;
 use App\Http\Controllers\Api\Auth\LoginAuthController;
 use App\Http\Controllers\Api\Auth\Password\ForgetPasswordcontroller;
@@ -44,7 +45,11 @@ Route::middleware('auth:sanctum')->prefix('account')->group(function () {
     });
 
     //======================== route comments user  ========================
-    Route::post('posts/{id}/comments',[CommentController::class,'__invoke']);
+    Route::post('posts/{id}/comments', [CommentController::class, '__invoke']);
+
+    //======================== route notifications user  ========================
+    Route::post('notification/user', [NotificationsController::class, '__invoke']);
+
 
 });
 
